@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('body')
-<<<<<<< HEAD
     <main>
       <form action="" method="post">
         <input type="text" placeholder="Название статьи">
@@ -10,7 +9,4 @@
         </textarea>
       </form>
     </main>
-=======
-    bfgfgfgfgf
->>>>>>> e26842764e50917dad94e7fd0007c730d1c8f591
 @endsection
