@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        "name",
+        "text",
+        "image",
+        "article_type_id"
+    ];
 }
