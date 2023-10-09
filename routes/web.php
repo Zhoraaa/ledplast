@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,9 @@ Route::get('/', function () {
 });
 
 // Route::post("/article",[ArticleController::class,"create_article"]); и это А
+Route::get('/addUser', function () {
+    return view('addUsrTool');
+});
+
+Route::post('/addUser', [UserController::class, 'sign_up'])->name('addUser');
+Route::post('/login', [UserController::class, 'sign_in'])->name('login');
