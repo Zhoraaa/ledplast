@@ -18,8 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/article', function () {
+    return view('admin.article');
+})->name('');
 
-// Route::post("/article",[ArticleController::class,"create_article"]); и это А
+Route::post("/article", [ArticleController::class, "create_article"])->name('newArticle');
+
 Route::get('/addUser', function () {
     return view('addUsrTool');
 });

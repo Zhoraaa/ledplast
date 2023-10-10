@@ -20,38 +20,34 @@ class ArticleController extends Controller
 
     public function create_article(Request $request)
     {
-
+        // dd($request);
         $request->validate([
-            "title" => "required|max:50",
-            "description" => "required",
-            "cost" => "required|numeric",
-            "duration" => "required|digits:value",
-            "category_id" => "required",
+            "name" => "required|max:50",
+            "text" => "required|max:32000",
+            // "image" => "required|max:50",
+            // "article_type_id" => "required",
 
         ],[ 
-            "title.required"=>"Поле обязательно для заполнения",
-            "description.required"=>"Поле обязательно для заполнения",
-            "cost.required"=>"Поле обязательно для заполнения",
-            "duration.required"=>"Поле обязательно для заполнения",
-            "category_id.required"=>"Поле обязательного заполнения",
+            "name.required"=>"Поле обязательно для заполнения",
+            "text.required"=>"Поле обязательно для заполнения",
+            // "image.required"=>"Поле обязательно для заполнения",
+            // "article_type_id.required"=>"Поле обязательного заполнения",
             
-            "title.max"=>"Название курса должно содержать не больше 50 символов",
-            
-            "cost.numeric"=>"Цена должна состоять из цифр",
+            "name.max"=>"Название статьи должно содержать не больше 50 символов",
+            // "image.max"=>"Длина данного поля должна содержать не больше 50 символов",
 
         ]);
 
         $article_info = $request->all();
 
         Article::create([
-            "title"=> $article_info["title"],
-            "description"=> $article_info["description"],
-            "cost"=> $article_info["cost"],
-            "duration"=> $article_info["duration"],
-            "category_id"=> $article_info["category"],
+            "name"=> $article_info["name"],
+            "text"=> $article_info["text"],
+            // "image"=> $article_info["image"],
+            // "article_type_id"=> $article_info["article_type"],
 
         ]);
-
-        return redirect("/");
+        dd(23456);
+        // return redirect("/");
     }
 }

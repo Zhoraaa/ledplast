@@ -13,4 +13,5 @@ class Article extends Model
         "image",
         "article_type_id"
     ];
+    public $timestamps = false;
 }
