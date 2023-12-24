@@ -4,60 +4,81 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     //
-    public function authMethod($authData)
+    public function user()
     {
-        $authData['password'] = md5($authData['password']);
-        // dd($authData);
+        // dd(session());
+        if (session('user')) {
+        } else {
+            return route('user');
+        }
+    }
 
-        $user = DB::table('users')
-            ->where('email', $authData['email'])
-            ->where('password', $authData['password'])
-            ->first();
+    public function signIn(Request $userData)
+    {
+        $validate = $userData->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:6|max:32|regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{6,32}$/',
+        ]);
 
-        session([
-            'id' => $user->id,
-            'username' => $user->name, 
-            'user_email' => $user->email, 
-            'user_rights' => $user->role_id
+        if (Auth::attempt($userData->only('email', 'password'))) {
+            return redirect('user');
+        }
+
+        return back()->withInput()->withErrors([
+            'null' => 'Неверные данные'
         ]);
     }
-    public function sign_in(Request $request)
+    public function signUp(Request $userData)
     {
-        $authData = $request->all();
-
-        $validated = $request->validate([
-            'email' => 'required|min:8|max:24',
-            'password' => 'required|min:6|max:24'
+        $validate = $userData->validate([
+            'login' => 'required|regex:/^[A-Za-z0-9_]{3,16}$/|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|max:32|confirmed|regex:/^(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{6,32}$/',
+            'pdata' => 'required'
         ]);
 
-        $this->authMethod($validated);
+        $user = User::create([
+            'login' => $userData->login,
+            'email' => $userData->email,
+            'role' => 3,
+            'password' => $userData->password,
+            'banned' => 0
+        ]);
+
+        Auth::login($user);
+
+        return redirect(route('user'));
+    }
+
+    public function logOut(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('/');
     }
 
-    public function sign_up(Request $request)
+    public function changeBalance(Request $request)
     {
-        $regData = $request->all();
-
-        $validated = $request->validate([
-            'name' => 'required|min:2|max:16',
-            'email' => 'required|min:8|max:24|unique:users',
-            'password' => 'required|min:6|max:24'
+        // dd($request);
+        $request->validate([
+            'money' => 'required|numeric|min:1',
         ]);
-
-        if ($validated['password'] == $regData['password_repeat']) {
-            User::create([
-                'name' => $validated['name'],
-                'email' => $validated['email'],
-                'password' => md5($validated['password'])
-            ]);
-
-            $this->authMethod($validated);
-            return redirect('/');
-        }
+    
+        $user = Auth::user();
+        $user->update([
+            'balance' => $user->balance + $request->money,
+        ]);
+    
+        return redirect()->route('user')->with('success', 'Баланс успешно обновлен.');
     }
+
 }

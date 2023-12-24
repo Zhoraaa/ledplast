@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BasketController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,17 +19,41 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
-});
-Route::get('/article', function () {
-    return view('admin.article');
-})->name('');
+    return view('home');
+})->name('home');
 
-Route::post("/article", [ArticleController::class, "create_article"])->name('newArticle');
+Route::post('/post', [PostController::class, "postEditor"])->middleware('auth')->name('postNew');
+Route::get('/forum', [PostController::class, "allPosts"])->name('forum');
+Route::get('/post/{id}', [PostController::class, "seePost"])->name('seePost');
+Route::post('/post/{id}/edit', [PostController::class, "postEditor"])->name('postEdit');
+Route::post('/post/{id}/delete', [PostController::class, "postDelete"])->name('postDelete');
+Route::post('/post/save', [PostController::class, "postSave"])->middleware('auth')->name('savePost');
+Route::get('/post/reply-to/{idToReply}', [PostController::class, "postEditor"])->middleware('auth')->name('postReply');
+Route::post('/post/reply-to/{idToReply}', [PostController::class, "postSave"])->middleware('auth')->name('postReply');
 
-Route::get('/addUser', function () {
-    return view('addUsrTool');
-});
+Route::get('/user', function () { return view('user.perArea'); })->middleware('auth')->name("user");
+Route::get('/user/auth', function () { return view('user.authPage'); })->middleware('guest')->name("auth");
+Route::get('/user/reg', function () { return view('user.regPage'); })->middleware('guest')->name("reg");
+Route::post('/user/exit', [UserController::class, "logOut"])->middleware('auth')->name("logout");
+Route::post('/user/new', [UserController::class, "signUp"])->name("signUp");
+Route::post('/user/auth', [UserController::class, "signIn"])->name("signIn");
+Route::post('/user/changeBalance', [UserController::class, "changeBalance"])->name("changeBalance");
 
-Route::post('/addUser', [UserController::class, 'sign_up'])->name('addUser');
-Route::post('/login', [UserController::class, 'sign_in'])->name('login');
+Route::get('/shop', [ProductController::class, "allProducts"])->name('shop');
+Route::post('/product', [ProductController::class, "productEditor"])->middleware("auth")->name("productNew");
+Route::post('/product/save', [ProductController::class, "productSave"])->middleware("auth")->name("productSave");
+Route::get('/product/{id}', [ProductController::class, "seeProduct"])->name('seeProduct');
+Route::post('/product/{id}/delete', [ProductController::class, "productDelete"])->name('productDelete');
+Route::post('/product/{id}/edit', [ProductController::class, "productEditor"])->name('productEdit');
+
+Route::post('/product/{id}/addToCart', [BasketController::class, "addToCart"])->middleware('auth')->name('addToCart');
+Route::get('/cart', [BasketController::class, "getBasket"])->middleware('auth')->name('cart');
+Route::post('/cart/exclude', [BasketController::class, "basketExclude"])->middleware('auth')->name('basketExclude');
+Route::post('/cart/pay', [BasketController::class, "payBasket"])->middleware('auth')->name('payBasket');
+Route::post('/order/{id}/get', [BasketController::class, "getOrder"])->middleware('auth')->name('getOrder');
+
+Route::get('/admin/usrRedaction', [AdminController::class, "usrRedaction"])->middleware('auth')->name('usrRedaction');
+Route::post('/admin/doMod/{id}', [AdminController::class, "doMod"])->middleware('auth')->name('doMod');
+Route::post('/admin/undoMod/{id}', [AdminController::class, "undoMod"])->middleware('auth')->name('undoMod');
+Route::post('/admin/ban/{id}', [AdminController::class, "ban"])->middleware('auth')->name('ban');
+Route::post('/admin/unban/{id}', [AdminController::class, "unban"])->middleware('auth')->name('unban');
