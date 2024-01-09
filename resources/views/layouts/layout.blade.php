@@ -59,7 +59,7 @@
                         Статьи
                     </a>
                     <div class="dropdown-menu active">
-                        <a class="dropdown-item text-white hov-gray" href="{{-- @route('news') --}}">Доставка</a>
+                        <a class="dropdown-item text-white hov-gray" href="{{ @route('delivery') }}">Доставка</a>
                         <a class="dropdown-item text-white hov-gray" href="#">Гарантия</a>
                         <a class="dropdown-item text-white hov-gray" href="#">Полезная информация</a>
                         <a class="dropdown-item text-white hov-gray" href="#">Госучреждениям</a>

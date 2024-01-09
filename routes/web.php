@@ -57,3 +57,5 @@ Route::post('/admin/doMod/{id}', [AdminController::class, "doMod"])->middleware(
 Route::post('/admin/undoMod/{id}', [AdminController::class, "undoMod"])->middleware('auth')->name('undoMod');
 Route::post('/admin/ban/{id}', [AdminController::class, "ban"])->middleware('auth')->name('ban');
 Route::post('/admin/unban/{id}', [AdminController::class, "unban"])->middleware('auth')->name('unban');
+
+Route::get('/delivery', function () { return view('delivery'); })->name('delivery');
