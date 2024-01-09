@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ledplast :: @yield('title')</title>
+    <link rel="shortcut icon" href="{{ asset('imgs/logo.svg') }}" type="image/x-icon">
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -69,7 +70,7 @@
                     <a class="nav-link active" href="{{ @route('forum') }}">Наши работы</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ @route('user') }}">О нас</a>
+                    <a class="nav-link" href="{{ @route('about') }}">О нас</a>
                 </li>
                 @guest
                     <li class="nav-item">
@@ -100,6 +101,75 @@
     </nav>
 
     @yield('body')
+
+    <footer class="bg-bindigo text-light">
+        <div class="ftr-wrapper">
+            <div class="4logo">
+                <img src="{{ asset('imgs/fullestlogo.svg') }}" alt="">
+            </div>
+            <div class="ftr-info">
+                <div class="list">
+                    <div class="l-point text-light">
+                        <b>Сервисы</b>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="{{ route('shop') }}">Товары</a>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="">Услуги</a>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="">Электромонтаж</a>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="">АСУНО</a>
+                    </div>
+                </div>
+                <div class="list">
+                    <div class="l-point text-light">
+                        <b>Статьи</b>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="">Государственным<br>учреждениям</a>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="">Полезная<br>информация</a>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="">Наши работы</a>
+                    </div>
+                </div>
+                <div class="list">
+                    <div class="l-point text-light">
+                        <b>О нас</b>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="">Вакансии</a>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="">Контакты</a>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="">История<br>компании</a>
+                    </div>
+                    <div class="l-point text-light">
+                        <a href="">Франшиза</a>
+                    </div>
+                </div>
+                <div class="ftr-office-info">
+                    <p>г. Уфа, ул. Красина, д. 21</p>
+                    <p>+7 347 266 06 78</p>
+                    <p>info@ledplast.ru</p>
+                    <p>ООО “Уральский светотехнический завод”, 20232</p>
+                    <div class="ftr-soc-links">
+                        <a href=""><img src="" alt=""></a>
+                        <a href=""><img src="" alt=""></a>
+                        <a href=""><img src="" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 

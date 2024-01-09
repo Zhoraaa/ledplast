@@ -40,7 +40,7 @@
                             @foreach ($types as $type)
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="type{{ $type['id'] }}"
-                                        name="{{ $type['id'] }}" value="option1" checked>
+                                        name="{{ $type['id'] }}" value="option1">
                                     <label class="form-check-label"
                                         for="type{{ $type['id'] }}">{{ $type['name'] }}</label>
                                 </div>

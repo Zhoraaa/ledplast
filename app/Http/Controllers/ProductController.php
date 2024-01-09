@@ -73,8 +73,11 @@ class ProductController extends Controller
     public function allProducts(Request $request)
     {
 
-        if (!$request->filled('_token')) {
-            $products = Product::paginate(4);
+        if (!$request->filled('_token') && !$request->filled('category')) {
+            $products = Product::paginate(10);
+        } elseif($request->filled('category')) {
+            $products = Product::where('type', $request->category)
+            ->paginate(10);
         } else {
             $types = array_keys($request->except('_token', 'order_by', 'sequence'));
 
@@ -82,7 +85,7 @@ class ProductController extends Controller
                 ->select()
                 ->whereIn('type', $types)
                 ->orderBy($request->order_by, $request->sequence)
-                ->paginate(4);
+                ->paginate(10);
         }
 
 

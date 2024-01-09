@@ -59,3 +59,4 @@ Route::post('/admin/ban/{id}', [AdminController::class, "ban"])->middleware('aut
 Route::post('/admin/unban/{id}', [AdminController::class, "unban"])->middleware('auth')->name('unban');
 
 Route::get('/delivery', function () { return view('delivery'); })->name('delivery');
+Route::get('/about', function () { return view('about'); })->name('about');
