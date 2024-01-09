@@ -269,6 +269,7 @@ span {
 .main-info-elem {
   max-width: 80%;
   width: 40vw;
+  min-width: 500px;
 
   display: flex;
   flex-direction: column;
