@@ -34,7 +34,7 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'cost' => $request->cost,
                 'image' => $fileName,
-                'type' => $request->product_type
+                'type' => $request->type
             ]);
         } else {
             $update['updated_at'] = null;
@@ -73,26 +73,31 @@ class ProductController extends Controller
     public function allProducts(Request $request)
     {
 
+        function takeData($query) {
+            $data['products'] = $query->paginate(10);
+            $data['count'] = $query->count();
+
+            return $data;
+        }
+
         if (!$request->filled('_token') && !$request->filled('category')) {
-            $products = Product::paginate(10);
+            $query = Product::select();
         } elseif($request->filled('category')) {
-            $products = Product::where('type', $request->category)
-            ->paginate(10);
+            $query = Product::where('type', $request->category);
         } else {
             $types = array_keys($request->except('_token', 'order_by', 'sequence'));
 
-            $products = DB::table('products')
+            $query = DB::table('products')
                 ->select()
                 ->whereIn('type', $types)
-                ->orderBy($request->order_by, $request->sequence)
-                ->paginate(10);
+                ->orderBy($request->order_by, $request->sequence);
         }
 
+        $data = takeData($query);
 
         $types = ProductType::all();
 
-        $data = [
-            'products' => $products,
+        $data += [
             'types' => $types,
         ];
 

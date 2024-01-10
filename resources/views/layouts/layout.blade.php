@@ -30,11 +30,12 @@
     </script>
     {{-- Local --}}
     <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-bindigo text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-bindigo lt-thin">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ asset('imgs/logo.svg') }}" alt="Логотип" class="logo">
         </a>
@@ -66,11 +67,11 @@
                         <a class="dropdown-item text-white hov-gray" href="#">Госучреждениям</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ @route('forum') }}">Наши работы</a>
-                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ @route('about') }}">О нас</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ @route('contacts') }}">Контакты</a>
                 </li>
                 @guest
                     <li class="nav-item">
@@ -89,10 +90,10 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ @route('user') }}">Личный кабинет</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item centering">
                         <form action="{{ @route('logout') }}" method="POST">
                             @csrf
-                            <button class="text-light bg-bindigo border-0 " href="#">Выход</button>
+                            <button class="lt-thin bg-bindigo border-0 text-light" href="#">Выход</button>
                         </form>
                     </li>
                 @endauth
@@ -102,69 +103,69 @@
 
     @yield('body')
 
-    <footer class="bg-bindigo text-light">
-        <div class="ftr-wrapper">
-            <div class="4logo">
+    <footer class="bg-bindigo lt-thin">
+        <div class="ftr-wrapper w80">
+            <div class="ftr-logo">
                 <img src="{{ asset('imgs/fullestlogo.svg') }}" alt="">
             </div>
             <div class="ftr-info">
-                <div class="list">
-                    <div class="l-point text-light">
-                        <b>Сервисы</b>
+                <div class="list m-2">
+                    <div class="l-point lt-bold">
+                        <p>Сервисы</p>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="{{ route('shop') }}">Товары</a>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="">Услуги</a>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="">Электромонтаж</a>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="">АСУНО</a>
                     </div>
                 </div>
-                <div class="list">
-                    <div class="l-point text-light">
-                        <b>Статьи</b>
+                <div class="list m-2">
+                    <div class="l-point lt-bold">
+                        <p>Статьи</p>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="">Государственным<br>учреждениям</a>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="">Полезная<br>информация</a>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="">Наши работы</a>
                     </div>
                 </div>
-                <div class="list">
-                    <div class="l-point text-light">
-                        <b>О нас</b>
+                <div class="list m-2">
+                    <div class="l-point lt-bold">
+                        <p>О нас</p>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="">Вакансии</a>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="">Контакты</a>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="">История<br>компании</a>
                     </div>
-                    <div class="l-point text-light">
+                    <div class="l-point lt-thin">
                         <a href="">Франшиза</a>
                     </div>
                 </div>
-                <div class="ftr-office-info">
+                <div class="ftr-office-info m-2">
                     <p>г. Уфа, ул. Красина, д. 21</p>
                     <p>+7 347 266 06 78</p>
                     <p>info@ledplast.ru</p>
                     <p>ООО “Уральский светотехнический завод”, 20232</p>
-                    <div class="ftr-soc-links">
-                        <a href=""><img src="" alt=""></a>
-                        <a href=""><img src="" alt=""></a>
-                        <a href=""><img src="" alt=""></a>
+                    <div class="ftr-soc-links lt-thin">
+                        <a href=""><img src="{{ asset('imgs/vk.svg') }}" alt=""></a>
+                        <a href=""><img src="{{ asset('imgs/tiktok.svg') }}" alt=""></a>
+                        <a href=""><img src="{{ asset('imgs/YT.svg') }}" alt=""></a>
                     </div>
                 </div>
             </div>

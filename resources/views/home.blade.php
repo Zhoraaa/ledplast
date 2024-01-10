@@ -99,13 +99,12 @@
                 <h1 class="bindigo-text lt-up lt-bold">
                     СЕЙЧАС ИЩЕМ:
                 </h1>
-                <div class="wewant">
-                    <p>
-                    <ul class="bgray-text lt-bold">
-                        <li>asdsa</li>
-                    </ul>
-                    </p>
-                </div>
+                <ul class="bgray-text lt-bold wewant">
+                    <li>Монатжника</li>
+                    <li>Высотника</li>
+                    <li>Сотника</li>
+                    <li>Прапорщика</li>
+                </ul>
             </div>
             <div class="guy no-matter">
                 <img src="imgs/vacancies.png" alt="">

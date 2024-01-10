@@ -2,27 +2,33 @@
   display: none;
 }
 
-.divider.maybe-divider {
-  height: 0px;
+html {
+  font-size: 1.6vh;
 }
-@media (max-width: 1200px) {
+
+@media (max-width: 1000px) {
   .no-matter {
     display: none;
     height: 0px;
     width: 0px;
     overflow: hidden;
   }
-  .maybe-divider {
-    height: 5vh;
-  }
 }
 
 /* Фонтсы */
+@import url('https://fonts.cdnfonts.com/css/montserrat');
+
 *,
+h1,
+h2,
+h3,
+h3,
+h4,
+h5,
+h6,
 a,
 p,
 span {
-  font-size: 2vh;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -34,11 +40,27 @@ span {
   font-weight: bold;
 }
 
+.lt-thin {
+  font-weight: 300;
+}
+
 .text-center {
   text-align: center;
 }
+.text-right {
+  text-align: right;
+}
 
 /* Elems */
+.w80 {
+  width: 80%;
+  margin: auto;
+}
+.w60 {
+  width: 60%;
+  margin: auto;
+}
+
 .hov-gray {
   transition: all 0.2s ease-in;
 }
@@ -61,13 +83,28 @@ span {
   align-items: center;
 }
 
+.centering-m {
+  margin: auto;
+}
+
 .rounded-btn {
   min-width: 100px;
   border-radius: 1vh;
   padding: 2vh;
 }
 
+.pagination {
+  margin: 2vh auto;
+}
+
 /* Forms */
+label,
+input[type=checkbox],
+select,
+option {
+  cursor: pointer;
+}
+
 .form-auth {
   display: flex;
   flex-direction: column;
@@ -141,19 +178,49 @@ span {
 }
 
 /* footer */
-.ftr-wrapper {
-    width: 80%;
-    margin: auto;
-    padding: 10vh 0 15vh 0;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10vh;
+footer {
+  color: white;
 }
+
+.l-point>a {
+  color: white;
+}
+
+.ftr-wrapper {
+  padding: 10vh 0 15vh 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10vh;
+}
+
 .ftr-info {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.ftr-office-info>* {
+  margin: 0;
+}
+
+.ftr-soc-links {
+  margin-top: 2vh;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1vh;
+}
+
+.ftr-logo>* {
+  height: 7.5vh;
+}
+
+.ftr-soc-links>a>* {
+  height: 5vh;
 }
 
 /* cover */
@@ -183,7 +250,7 @@ span {
   gap: 1vh;
 }
 
-.fullogo > * {
+.fullogo>* {
   height: 7vh;
 }
 
@@ -233,13 +300,13 @@ span {
   width: 15vh;
 }
 
-.logo-ctg > * {
+.logo-ctg>* {
   width: 10vh;
   height: 10vh;
 }
 
 .category-name {
-  width: 15vh;
+  width: 20vh;
   margin: auto;
 }
 
@@ -248,6 +315,7 @@ span {
   min-height: 90vh;
   overflow: hidden;
 }
+
 .info-wrapper {
   margin-top: 5vh;
   gap: 10vh;
@@ -258,14 +326,17 @@ span {
 
   z-index: 1;
 }
+
 .guy {
   display: flex;
   align-items: flex-start;
   justify-content: center;
 }
+
 .guy * {
   height: 90vh;
 }
+
 .main-info-elem {
   max-width: 80%;
   width: 40vw;
@@ -277,10 +348,81 @@ span {
 
   position: relative;
 }
-.gray-area {
-  width: 100%;
-  min-height: 40vh;
-  position: absolute;
 
-  top: 200vh;
+/* Каталог */
+.pcards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(200px, 1fr));
+  gap: 2vh;
+}
+
+@media (max-width: 1200px) {
+  .pcards-wrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .pcards-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.product-card {
+  width: 20vh;
+  min-width: 20vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border: 0.1vh solid #4d4d4d;
+  border-radius: 1vh;
+
+  overflow: hidden;
+}
+
+.pcard-cover {
+  height: 20vh;
+  overflow: hidden;
+}
+
+.pcard-cover>* {
+  height: 20vh;
+  width: 20vh;
+}
+
+.pcard-text {
+  width: 100%;
+  padding: 2vh;
+}
+
+.about-logo {
+  padding: 10vh;
+}
+
+/* О нас */
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 2vh;
+}
+@media (max-width: 1000px) {
+  .history-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .history-grid .text-right {
+    text-align: start;
+  }
+}
+
+.storyline {
+  height: 90vh;
+  position: absolute;
+  top: 105vh;
+  left: 49%;
+}
+
+.abzac {
+  width: 40%;
 }

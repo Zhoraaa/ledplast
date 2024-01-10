@@ -7,77 +7,152 @@
 @php
     $products = $data['products'];
     $types = $data['types'];
+
+    $forGrid = [
+        '1' => 'Уличные светильники',
+        'Промышленные светильники',
+        'Офисные светильники',
+        'Парковые опоры (светильники)',
+        'Кронштейны и закладные',
+        'Асуно, it-разработка ПО',
+        'Светофорные комплексы',
+        'Мобильное освещение',
+        'Архитектурная подсветка',
+    ];
+
 @endphp
 
 @section('body')
-    <div class="border border-secondary rounded m-2 p-3">
-        <div class="d-flex">
-            @auth
-                @if (auth()->user()->role < 2)
-                    <form action="{{ @route('productNew') }}" method="post">
-                        @csrf
-                        <button class="btn btn-primary m-2">Новый товар</button>
-                    </form>
-                @endif
-            @endauth
-            <button type="button" class="btn btn-secondary m-2" data-toggle="modal" data-target="#exampleModal">
-                Фильтры
-            </button>
-            <hr>
+    <div class="divider"></div>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <form class="modal-content" method="GET" action="{{ route('shop') }}">
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Фильтрация</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            @foreach ($types as $type)
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="type{{ $type['id'] }}"
-                                        name="{{ $type['id'] }}" value="option1">
-                                    <label class="form-check-label"
-                                        for="type{{ $type['id'] }}">{{ $type['name'] }}</label>
-                                </div>
-                            @endforeach
-                            <br>
-                            <select name="order_by" id="">
-                                <option value="cost">По цене</option>
-                                <option value="created_at">По дате добавления</option>
-                            </select>
-                            <select name="sequence" id="">
-                                <option value="desc">Убывание</option>
-                                <option value="asc">Возрастание</option>
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                            <button class="btn btn-primary">Применить</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <br>
+    <br>
 
+    <div class="w80 d-flex justify-content-between align-items-center">
+        <h1 class="lt-bold lt-up bindigo-text">Каталог товаров</h1>
+        @auth
+            @if (auth()->user()->role < 2)
+                <form action="{{ @route('productNew') }}" method="post">
+                    @csrf
+                    <button class="btn btn-primary m-2 rounded">Новый товар</button>
+                </form>
+            @endif
+        @endauth
+        <button type="button" class="btn btn-secondary m-2 rounded" data-toggle="modal" data-target="#exampleModal">
+            Фильтры
+        </button>
+    </div>
 
-        @foreach ($products as $product)
-            <div>
-                <a href="{{ route('seeProduct', ['id' => $product->id]) }}">
-                    <h3>{{ $product->name }}</h3>
+    <div class="mini-catalogue">
+        <div class="grid-ctlg">
+            @foreach ($forGrid as $key => $item)
+                <a href="{{ route('shop', ['category' => $key]) }}">
+                    @csrf
+                    <div class="category-card">
+                        <div class="logo-ctg bg-bindigo centering">
+                            <img src="{{ asset('imgs/logos/' . $key . '.svg') }}" alt="">
+                        </div>
+                        <div class="category-name bgray-text text-center lt-up">
+                            {!! $item !!}
+                        </div>
+                    </div>
                 </a>
-                <p>{{ $product->cost }}₽</p>
-                {{-- <p>{{ $product->category }}</p> --}}
-            </div>
-        @endforeach
-
-
-        <div class="m-2">
-            {{ $products->links() }}
+            @endforeach
         </div>
     </div>
+
+    <br>
+
+    <div class="d-flex">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form class="modal-content" method="GET" action="{{ route('shop') }}">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Фильтрация</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @foreach ($types as $type)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="type{{ $type['id'] }}"
+                                    name="{{ $type['id'] }}" value="option1">
+                                <label class="form-check-label" for="type{{ $type['id'] }}">{{ $type['name'] }}</label>
+                            </div>
+                        @endforeach
+                        <br>
+                        <select name="order_by" id="">
+                            <option value="cost">По цене</option>
+                            <option value="created_at">По дате добавления</option>
+                        </select>
+                        <select name="sequence" id="">
+                            <option value="desc">Убывание</option>
+                            <option value="asc">Возрастание</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                        <button class="btn btn-primary">Применить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="w80">
+
+        <br>
+        <br>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="lt-bold lt-up bindigo-text">Товары по вашему запросу</h1>
+
+            <span class="bgray-text m-2">Всего позиций: {{ $data['count'] }}</span>
+
+            <a href="#about" class="bgray-text m-2">Читать подробнее</a>
+        </div>
+
+        <br>
+
+        <div class="w80 centering pagination">
+            {{ $products->links() }}
+        </div>
+
+        <div class="pcards-wrapper">
+            @foreach ($products as $product)
+                @php
+                    $link = $product->image == 'default.png' ? 'imgs/' . $product->image : 'storage/imgs/products/' . $product->image;
+                @endphp
+                <div class="product-card">
+                    <div class="pcard-cover centering">
+                        <img src="{{ asset($link) }}" alt="">
+                    </div>
+                    <div class="pcard-text">
+                        <a href="{{ route('seeProduct', ['id' => $product->id]) }}">
+                            <h5 class="bindigo-text lt-bold">{{ substr($product->name, 0, 13) }}...</h5>
+                        </a>
+                        <p>{{ $product->cost }}₽</p>
+                    </div>
+                    <a href="{{ route('seeProduct', ['id' => $product->id]) }}"
+                        class="btn btn-primary rounded centering-m">Подробнее</a>
+                </div>
+            @endforeach
+        </div>
+
+        <div class="w80 centering pagination">
+            {{ $products->links() }}
+        </div>
+
+        <br>
+        <br>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="w80"></div>
 @endsection

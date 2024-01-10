@@ -22,7 +22,7 @@
     @endif
 
     <div class="border border-secondary rounded m-2 p-3">
-        <div class="m-2">
+        <div class="w80 centering pagination">
             {{ $users->links() }}
         </div>
         <table class="table">
@@ -49,7 +49,7 @@
                         <td>{{ $user->banned ? 'Забанен' : 'Обычный' }}</td>
                         <td>
                             <div class="d-flex">
-                                @if ($user->role === 'Игрок' && !$user->banned)
+                                @if ($user->role === 'Покупатель' && !$user->banned)
                                     <form action="{{ route('doMod', ['id' => $user->id]) }}" method="post">
                                         @csrf
                                         <button class="btn btn-success m-2">Назначить модератором</button>
@@ -78,7 +78,7 @@
                     </tr>
                 @endforeach
         </table>
-        <div class="m-2">
+        <div class="w80 centering pagination">
             {{ $users->links() }}
         </div>
     </div>

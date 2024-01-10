@@ -14,7 +14,7 @@
                 </form>
             @endif
         @endauth
-        <div class="m-2">
+        <div class="w80 centering pagination">
             {{ $posts->links() }}
         </div>
         @if (!empty($posts))
@@ -34,7 +34,7 @@
             Постов пока нет
         @endif
 
-        <div class="m-2">
+        <div class="w80 centering pagination">
             {{ $posts->links() }}
         </div>
     </div>

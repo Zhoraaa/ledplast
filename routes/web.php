@@ -60,3 +60,4 @@ Route::post('/admin/unban/{id}', [AdminController::class, "unban"])->middleware(
 
 Route::get('/delivery', function () { return view('delivery'); })->name('delivery');
 Route::get('/about', function () { return view('about'); })->name('about');
+Route::get('/contacts', function () { return view('contacts'); })->name('contacts');
