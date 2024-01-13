@@ -38,7 +38,7 @@
     </div>
 
     <br>
-hgrid-elem m-4">
+    
     <div class="divider"></div>
 
     <br>
