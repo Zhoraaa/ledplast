@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('product_media', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products');
-            $table->foreignId('image');
+            $table->string('image');
         });
     }
 

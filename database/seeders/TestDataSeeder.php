@@ -12,7 +12,7 @@ class TestDataSeeder extends Seeder
             UserTableSeeder::class,
             PostTableSeeder::class,
             ProductTableSeeder::class,
-            BasketTableSeeder::class
+            BasketTableSeeder::class,
         ]);
     }
 }

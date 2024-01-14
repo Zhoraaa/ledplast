@@ -127,14 +127,12 @@ class ProductController extends Controller
     {
         $product = Product::find($request->id);
         $pTypes = ProductType::get()->all();
-        // dd($pTypes);
 
         $data = [
             'product' => $product,
             'pTypes' => $pTypes
         ];
-
-        dd($data);
+        // dd($data);
 
         return view("product.editor", compact('data'));
     }

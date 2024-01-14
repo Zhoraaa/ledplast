@@ -9,5 +9,7 @@ class ProductMedia extends Model
 {
     protected $fillable = ['product_id', 'image'];
 
+    public $timestamps = false;
+
     use HasFactory;
 }
