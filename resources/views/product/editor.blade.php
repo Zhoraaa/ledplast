@@ -30,7 +30,7 @@
                 value="{{ isset($product) ? $product->cost : null }}">
         </div>
         <div class="form-block-wrapper border border-secondary rounded">
-            <input type="file" name="image">
+            <input type="file" name="images[]" multiple>
         </div>
         <div class="form-block-wrapper border border-secondary rounded">
             <select name="type" id="">

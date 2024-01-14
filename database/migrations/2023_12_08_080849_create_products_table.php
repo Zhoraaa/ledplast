@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('cost');
-            $table->string('image');
+            // $table->string('image');
             $table->foreignId('type')->constrained('product_types');
             // $table->string('model'), // модель
             // $table->string('producer'), // производитель

@@ -18,7 +18,6 @@ class ProductFactory extends Factory
             'name' => $this->faker->word,
             'description' => $this->faker->paragraph,
             'cost' => round($this->faker->numberBetween(100, 2000), -2),
-            'image' => 'default.png',
             'type' => $this->faker->randomElement($types)->id,
         ];
     }
