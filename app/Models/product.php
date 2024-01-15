@@ -17,9 +17,19 @@ class Product extends Model
     }
     public function __get($key)
     {
-        if ($key == 'category') {
-            return $this->category()->first()->name;
+        switch ($key) {
+            case 'category':
+                return $this->category()->first()->name;
+
+            case 'cover':
+                return $this->productMedia()->first()->image;
         }
+
         return parent::__get($key);
+    }
+
+    public function productMedia()
+    {
+        return $this->hasMany(ProductMedia::class);
     }
 }

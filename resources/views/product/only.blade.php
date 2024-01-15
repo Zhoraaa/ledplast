@@ -5,7 +5,7 @@
 @endsection
 
 @php
-    $link = $product->image == 'default.png' ? 'imgs/' . $product->image : 'storage/imgs/products/' . $product->image;
+    $link = $product->ProductMedia()->count() === 0 ? 'imgs/default.png' : 'storage/imgs/products/' . $product->cover;
 @endphp
 
 @section('body')

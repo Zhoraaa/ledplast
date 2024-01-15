@@ -352,7 +352,7 @@ footer {
 /* Каталог */
 .pcards-wrapper {
   display: grid;
-  grid-template-columns: repeat(6, minmax(200px, 1fr));
+  grid-template-columns: repeat(5, minmax(20vh, 1fr));
   gap: 2vh;
 }
 
@@ -369,7 +369,6 @@ footer {
 }
 
 .product-card {
-  width: 25vh;
   min-width: 20vh;
 
   display: flex;
@@ -383,7 +382,7 @@ footer {
 }
 
 .pcard-cover {
-  height: 20vh;
+  height: 25vh;
   overflow: hidden;
 }
 

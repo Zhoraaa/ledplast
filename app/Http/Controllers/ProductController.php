@@ -14,30 +14,38 @@ class ProductController extends Controller
     //
     public function productSave(Request $request)
     {
-        // dd($request);
-        // $productData = $request->validate([
-        //     "name" => "required|unique:products",
-        //     "description" => "required",
-        //     "cost" => "required|min:1|",
-        // ]);
-        // dd($request->all());
+        function loadMedia($imgs, $product_id)
+        {
+            $counter = 1;
+            foreach ($imgs as $image) {
+                $fileName = time() . '_' . $counter . '.' . $image->extension();
+                $imagePath = $image->storeAs('public/imgs/products', $fileName);
+                ProductMedia::create([
+                    'product_id' => $product_id,
+                    'image' => $fileName
+                ]);
+                $counter++;
+            }
+        }
 
         if (!$request->product_id) {
-            dd($request->all());
-            if ($request->hasFile('image')) {
-                $fileName = time() . '.' . $request->file('image')->extension();
-                $imagePath = $request->file('image')->storeAs('public/imgs/products', $fileName);
-            }
-
+            // dd($request->images);
+            // Новый товар
             $product_id = Product::insertGetId([
                 'name' => $request->name,
                 'description' => $request->description,
                 'cost' => $request->cost,
                 'type' => $request->type
             ]);
+
+            if ($request->hasFile('images') && is_array($request->file('images'))) {
+                loadMedia($request->images, $product_id);
+            }
         } else {
+            // dd($request->images);
+            // Обновление
             $update['updated_at'] = null;
-            if ($request->hasFile('image')) {
+            if ($request->hasFile('images') && is_array($request->file('images'))) {
                 $oldFiles = ProductMedia::select('image')->where('product_id', $request->product_id)->get();
 
                 foreach ($oldFiles as $oldFile) {
@@ -45,11 +53,10 @@ class ProductController extends Controller
                     if (Storage::exists($filePath)) {
                         Storage::delete($filePath);
                     }
+                    ProductMedia::where('product_id', $request->product_id)->delete();
                 }
 
-                $fileName = time() . '.' . $request->file('image')->extension();
-                $imagePath = $request->file('image')->storeAs('public/imgs/products', $fileName);
-                $update['image'] = $fileName;
+                loadMedia($request->images, $request->product_id);
             }
 
             $toUPD = $request->toArray();
@@ -86,8 +93,9 @@ class ProductController extends Controller
 
         function takeData($query)
         {
-            $data['products'] = $query->paginate(10);
+            $data['products'] = $query->with('productMedia')->get();
             $data['count'] = $query->count();
+            // dd($data['products'][0]->cover);
 
             return $data;
         }
@@ -138,13 +146,16 @@ class ProductController extends Controller
     }
     public function productDelete(Request $request)
     {
-        $oldFiles = Product::select('image')->where('id', $request->product_id)->get();
+        // dd($request->id);
+        $oldFiles = ProductMedia::select('image')->where('product_id', $request->id)->get();
 
         foreach ($oldFiles as $oldFile) {
             $filePath = 'public/imgs/products/' . $oldFile->image;
+            // dd($filePath);
             if (Storage::exists($filePath)) {
                 Storage::delete($filePath);
             }
+            ProductMedia::where('product_id', $request->id)->delete();
         }
 
         $product = DB::table("products")->where('id', $request->id)->delete();

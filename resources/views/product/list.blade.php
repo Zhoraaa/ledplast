@@ -19,7 +19,6 @@
         'Мобильное освещение',
         'Архитектурная подсветка',
     ];
-
 @endphp
 
 @section('body')
@@ -119,14 +118,16 @@
 
         <br>
 
-        <div class="w80 centering pagination">
+        {{-- <div class="w80 centering pagination">
             {{ $products->links() }}
-        </div>
+        </div> --}}
 
         <div class="pcards-wrapper">
             @foreach ($products as $product)
                 @php
-                    $link = $product->image == 'default.png' ? 'imgs/' . $product->image : 'storage/imgs/products/' . $product->image;
+                    $link = ($product->ProductMedia()->count() === 0) ? 'imgs/default.png' : 'storage/imgs/products/' . $product->cover;
+
+                    $name =  strlen($product->name) > 13 ? substr($product->name, 0, 13).'...' : $product->name ;
                 @endphp
                 <div class="product-card">
                     <div class="pcard-cover centering">
@@ -134,7 +135,7 @@
                     </div>
                     <div class="pcard-text">
                         <a href="{{ route('seeProduct', ['id' => $product->id]) }}">
-                            <h5 class="bindigo-text lt-bold">{{ substr($product->name, 0, 13) }}...</h5>
+                            <h5 class="bindigo-text lt-bold">{{ $name }}</h5>
                         </a>
                         <p>{{ $product->cost }}₽</p>
                     </div>
@@ -144,9 +145,9 @@
             @endforeach
         </div>
 
-        <div class="w80 centering pagination">
+        {{-- <div class="w80 centering pagination">
             {{ $products->links() }}
-        </div>
+        </div> --}}
 
         <br>
         <br>
