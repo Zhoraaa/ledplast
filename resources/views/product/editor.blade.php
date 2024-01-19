@@ -21,7 +21,7 @@
                 value="{{ isset($product) ? $product->name : null }}">
         </div>
         <div class="form-block-wrapper border border-secondary rounded">
-            <textarea name="description" id="tinyMCE" placeholder="Описание товара">
+            <textarea name="description" class="tinyMCE" placeholder="Описание товара">
                 {{ isset($product) ? $product->description : null }}
             </textarea>
         </div>

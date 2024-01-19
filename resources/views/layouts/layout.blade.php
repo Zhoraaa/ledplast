@@ -21,7 +21,7 @@
         referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: '#tinyMCE',
+            selector: '.tinyMCE',
             language: 'ru',
             menubar: 'edit format insert view',
             plugins: 'mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
@@ -66,6 +66,9 @@
                         <a class="dropdown-item text-white hov-gray" href="#">Полезная информация</a>
                         <a class="dropdown-item text-white hov-gray" href="#">Госучреждениям</a>
                     </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ @route('ourWorks') }}">Наши работы</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ @route('about') }}">О нас</a>

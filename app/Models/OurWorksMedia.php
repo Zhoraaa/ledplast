@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OurWork extends Model
+class OurWorksMedia extends Model
 {
+    protected $fillable = ['work_id', 'image'];
+
+    public $timestamps = false;
+
     use HasFactory;
 }

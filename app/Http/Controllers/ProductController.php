@@ -107,9 +107,7 @@ class ProductController extends Controller
         } else {
             $types = array_keys($request->except('_token', 'order_by', 'sequence'));
 
-            $query = DB::table('products')
-                ->select()
-                ->whereIn('type', $types)
+            $query = Product::whereIn('type', $types)
                 ->orderBy($request->order_by, $request->sequence);
         }
 

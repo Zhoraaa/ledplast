@@ -14,7 +14,7 @@
                 value="{{ isset($post) ? $post->theme : null }}">
         </div>
         <div class="form-block-wrapper border border-secondary rounded">
-            <textarea name="text" id="tinyMCE" placeholder="Текст поста...">
+            <textarea name="text" class="tinyMCE" placeholder="Текст поста...">
                 {{ isset($post) ? $post->text : null }}
             </textarea>
         </div>

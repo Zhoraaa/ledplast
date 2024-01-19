@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class OurWorkMediaController extends Controller
+class LetterController extends Controller
 {
     //
 }

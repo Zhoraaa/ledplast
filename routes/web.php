@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\OurWorksController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LetterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,11 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', function () { return view('home'); })->name('home');
 
-Route::post('/post', [PostController::class, "postEditor"])->middleware('auth')->name('postNew');
+Route::post('/post/new', [PostController::class, "postEditor"])->middleware('auth')->name('postNew');
 Route::get('/forum', [PostController::class, "allPosts"])->name('forum');
 Route::get('/post/{id}', [PostController::class, "seePost"])->name('seePost');
 Route::post('/post/{id}/edit', [PostController::class, "postEditor"])->name('postEdit');
@@ -61,3 +61,13 @@ Route::post('/admin/unban/{id}', [AdminController::class, "unban"])->middleware(
 Route::get('/delivery', function () { return view('delivery'); })->name('delivery');
 Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/contacts', function () { return view('contacts'); })->name('contacts');
+
+Route::get('/ourWorks', [OurWorksController::class, "getAll"])->name('ourWorks');
+Route::get('/ourWork/new', [OurWorksController::class, "editor"])->middleware('auth')->name('OWnew');
+Route::get('/ourWork/{id}', [OurWorksController::class, "checkWork"])->name('OWview');
+Route::get('/ourWork/{id}/edit', [OurWorksController::class, "editor"])->middleware('auth')->name('OWedit');
+Route::get('/ourWork/{id}/delete', [OurWorksController::class, "delete"])->middleware('auth')->name('OWdelete');
+Route::post('/ourWork/save', [OurWorksController::class, "save"])->middleware('auth')->name('OWsave');
+
+Route::get('/letter/add', [LetterController::class, "new"])->middleware('auth')->name('letterNew');
+Route::post('/letter/delete', [LetterController::class, "delete"])->middleware('auth')->name('letterDel');

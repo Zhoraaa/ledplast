@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('our_works', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('cover');
+            $table->string('year', 4);
+            $table->text('description');
+            $table->text('what_we_do');
             $table->timestamps();
         });
     }

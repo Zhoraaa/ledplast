@@ -5,8 +5,6 @@
 @endsection
 
 @section('body')
-    <img src="./imgs/storyline.svg" alt="" class="no-matter storyline">
-
     <div class="divider"></div>
 
     <div class="w60">
@@ -38,7 +36,7 @@
     </div>
 
     <br>
-    
+
     <div class="divider"></div>
 
     <br>
@@ -51,79 +49,87 @@
 
     <br>
 
-    <div class="w60 history-grid">
-        <div class="hgrid-elem m-4">
-            <h1 class="bgray-text text-right lt-bold lt-up">
-                2013
-            </h1>
+    <div class="history-grid w60">
+        <div class="hgrid-elem">
+            <div class="m-4 text-right">
+                <h1 class="bgray-text lt-bold lt-up ">
+                    2013
+                </h1>
+            </div>
+            <div class="m-4 text-right">
+                <h1 class="bgray-text lt-bold lt-up ">
+                    2015
+                </h1>
+            </div>
+            <div class="m-4 text-right">
+                <h1 class="bgray-text lt-bold lt-up row-x2">
+                    2017
+                </h1>
+            </div>
+            <div class="m-4 text-right">
+                <h1 class="bgray-text lt-bold lt-up row-x2">
+                    2020
+                </h1>
+            </div>
+            <div class="m-4 text-right">
+                <h1 class="bgray-text lt-bold lt-up ">
+                    Светлое<br>будущее
+                </h1>
+            </div>
         </div>
-        <div class="hgrid-elem m-4">
-            <h1 class="bgray-text lt-bold lt-up">
-                ЗАРОЖДЕНИЕ
-            </h1>
-            <p>
-                Зарождение идеи производства светодиодных светильников. Многолетний опыт работы на рынке светотехники
-                позволил нам создать по-настоящему качественный продукт. Мы внимательно изучили ошибки многих
-                компаний-производителей и разработали инновационные модели светильников, лишенные недостатков светильников
-                предыдущих поколений.
-            </p>
-        </div>
-        <div class="hgrid-elem m-4">
-            <h1 class="bgray-text text-right lt-bold lt-up">
-                2015
-            </h1>
-        </div>
-        <div class="hgrid-elem m-4">
-            <h1 class="bgray-text lt-bold lt-up">
-                АНАЛИЗ
-            </h1>
-            <p>
-                Анализ, изучение направления, первые инженерные разработки и прототипы.
-            </p>
-        </div>
-        <div class="hgrid-elem m-4">
-            <h1 class="bgray-text text-right lt-bold lt-up">
-                2017
-            </h1>
-        </div>
-        <div class="hgrid-elem m-4">
-            <h1 class="bgray-text lt-bold lt-up">
-                ПРОИЗВОДСТВО
-            </h1>
-            <p>
-                Производство промышленного светильника, тестирование, ввод в эксплуатацию.
-            </p>
-            <h1 class="bgray-text lt-bold lt-up">
-                ДКУ УРАЛ
-            </h1>
-            <p>
-                Выпуск серии уличных светодиодных светильников ДКУ УРАЛ
-            </p>
-        </div>
-        <div class="hgrid-elem m-4">
-            <h1 class="bgray-text text-right lt-bold lt-up">
-                2020
-            </h1>
-        </div>
-        <div class="hgrid-elem m-4">
-            <h1 class="bgray-text lt-bold lt-up">
-                ПРИЗНАНИЕ
-            </h1>
-            <p>
-                Регистрация ООО «Уральский светотехнический завод», сертификация, проведение независимых лабораторных
-                испытаний, помимо испытаний в собственной лаборатории.
-            </p>
-            <h1 class="bgray-text lt-bold lt-up">
-                РЫНКИ
-            </h1>
-            <p>
-                Выход на открытый рынок светодиодной светотехнической продукции Российской Федерации, Казахстана, Беларуси.
-            </p>
-        </div>
-        <div class="hgrid-elem m-4">
-            <h1 class="bgray-text text-right lt-bold lt-up">
-                Светлое<br>будущее
-            </h1>
+
+        <img src="./imgs/storyline.svg" alt="" class="no-matter storyline">
+
+        <div class="hgrid-elem">
+            <div class="m-4">
+                <h1 class="bgray-text lt-bold lt-up text-left">
+                    ЗАРОЖДЕНИЕ
+                </h1>
+                <p>
+                    Зарождение идеи производства светодиодных светильников. Многолетний опыт работы на рынке светотехники
+                    позволил нам создать по-настоящему качественный продукт. Мы внимательно изучили ошибки многих
+                    компаний-производителей и разработали инновационные модели светильников, лишенные недостатков
+                    светильников предыдущих поколений.
+                </p>
+            </div>
+            <div class="m-4">
+                <h1 class="bgray-text lt-bold lt-up text-left">
+                    АНАЛИЗ
+                </h1>
+                <p>
+                    Анализ, изучение направления, первые инженерные разработки и прототипы.
+                </p>
+            </div>
+            <div class="m-4">
+                <h1 class="bgray-text lt-bold lt-up text-left">
+                    ПРОИЗВОДСТВО
+                </h1>
+                <p>
+                    Производство промышленного светильника, тестирование, ввод в эксплуатацию.
+                </p>
+                <h1 class="bgray-text lt-bold lt-up text-left">
+                    ДКУ УРАЛ
+                </h1>
+                <p>
+                    Выпуск серии уличных светодиодных светильников ДКУ УРАЛ
+                </p>
+            </div>
+            <div class="m-4">
+                <h1 class="bgray-text lt-bold lt-up text-left">
+                    ПРИЗНАНИЕ
+                </h1>
+                <p>
+                    Регистрация ООО «Уральский светотехнический завод», сертификация, проведение независимых лабораторных
+                    испытаний, помимо испытаний в собственной лаборатории.
+                </p>
+                <h1 class="bgray-text lt-bold lt-up text-left">
+                    РЫНКИ
+                </h1>
+                <p>
+                    Выход на открытый рынок светодиодной светотехнической продукции Российской Федерации, Казахстана,
+                    Беларуси.
+                </p>
+            </div>
         </div>
     </div>
 
