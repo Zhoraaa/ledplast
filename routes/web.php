@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () { return view('home'); })->name('home');
 
 Route::post('/post/new', [PostController::class, "postEditor"])->middleware('auth')->name('postNew');
-Route::get('/forum', [PostController::class, "allPosts"])->name('forum');
+Route::get('/forum', [PostController::class, "allPosts"])->name('forum'); 
 Route::get('/post/{id}', [PostController::class, "seePost"])->name('seePost');
 Route::post('/post/{id}/edit', [PostController::class, "postEditor"])->name('postEdit');
 Route::post('/post/{id}/delete', [PostController::class, "postDelete"])->name('postDelete');
@@ -39,8 +39,8 @@ Route::post('/user/new', [UserController::class, "signUp"])->name("signUp");
 Route::post('/user/auth', [UserController::class, "signIn"])->name("signIn");
 Route::post('/user/changeBalance', [UserController::class, "changeBalance"])->name("changeBalance");
 
-Route::get('/shop', [ProductController::class, "allProducts"])->name('shop');
-Route::post('/product', [ProductController::class, "productEditor"])->middleware("auth")->name("productNew");
+Route::get('/catalogue', [ProductController::class, "allProducts"])->name('shop'); // в карту
+Route::post('/product', [ProductController::class, "productEditor"])->middleware("auth")->name("productNew"); // в карту
 Route::post('/product/save', [ProductController::class, "productSave"])->middleware("auth")->name("productSave");
 Route::get('/product/{id}', [ProductController::class, "seeProduct"])->name('seeProduct');
 Route::post('/product/{id}/delete', [ProductController::class, "productDelete"])->name('productDelete');
@@ -58,11 +58,11 @@ Route::post('/admin/undoMod/{id}', [AdminController::class, "undoMod"])->middlew
 Route::post('/admin/ban/{id}', [AdminController::class, "ban"])->middleware('auth')->name('ban');
 Route::post('/admin/unban/{id}', [AdminController::class, "unban"])->middleware('auth')->name('unban');
 
-Route::get('/delivery', function () { return view('delivery'); })->name('delivery');
-Route::get('/about', function () { return view('about'); })->name('about');
-Route::get('/contacts', function () { return view('contacts'); })->name('contacts');
+Route::get('/delivery', function () { return view('delivery'); })->name('delivery'); // в карту
+Route::get('/about', function () { return view('about'); })->name('about'); // в карту
+Route::get('/contacts', function () { return view('contacts'); })->name('contacts'); // в карту
 
-Route::get('/ourWorks', [OurWorksController::class, "getAll"])->name('ourWorks');
+Route::get('/ourWorks', [OurWorksController::class, "getAll"])->name('ourWorks'); // в карту
 Route::get('/ourWork/new', [OurWorksController::class, "editor"])->middleware('auth')->name('OWnew');
 Route::get('/ourWork/{id}', [OurWorksController::class, "checkWork"])->name('OWview');
 Route::get('/ourWork/{id}/edit', [OurWorksController::class, "editor"])->middleware('auth')->name('OWedit');
