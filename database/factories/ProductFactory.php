@@ -17,6 +17,9 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->paragraph,
+            'parameters' => $this->faker->paragraph,
+            'advantages' => $this->faker->paragraph,
+            'usability' => $this->faker->paragraph,
             'cost' => round($this->faker->numberBetween(100, 2000), -2),
             'type' => $this->faker->randomElement($types)->id,
         ];

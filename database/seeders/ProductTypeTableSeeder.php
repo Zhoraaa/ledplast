@@ -18,5 +18,6 @@ class ProductTypeTableSeeder extends Seeder
         ProductType::factory()->create(['name' => 'Светофорные комплексы']);
         ProductType::factory()->create(['name' => 'Мобильное освещение']);
         ProductType::factory()->create(['name' => 'Архитектурная подсветка']);
+        ProductType::factory()->create(['name' => 'Сопутствующие товары']);
     }
 }

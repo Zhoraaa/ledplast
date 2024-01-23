@@ -20,7 +20,7 @@
         <div class="d-flex flex-column align-items-center">
             @foreach ($ourWorks as $ourWork)
                 @php
-                    $link = 'imgs/default.png';
+                    $link = ($ourWork->cover === 'default.png') ? 'imgs/default.png' : 'storage/imgs/our_works/covers/'.$ourWork->cover;
                 @endphp
                 <div class="d-flex align-items-start w-100">
                     <div class="OWcover d-flex align-items-start">
@@ -35,7 +35,7 @@
                         </div>
                         <br>
                         <div class="bgray-text">
-                            {{ $ourWork->description }}
+                            {!! strlen($ourWork->description) < 200 ? $ourWork->description : substr($ourWork->description, 0, 150).'...' !!}
                         </div>
                         <br>
                         <a href="{{ route('OWview', ['id' => $ourWork->id]) }}"><button class="btn btn-primary">Подробнее →</button></a>

@@ -10,14 +10,14 @@
             <div class="divider"></div>
             <br>
             <div class="centering">
-                <form action="{{ route('OWedit', ['id' => $data->id]) }}">
+                <form action="{{ route('OWedit', ['id' => $data->id]) }}" class="m-2">
                     @csrf
                     <button class="btn btn-secondary">
                         Редактировать
                     </button>
                 </form>
 
-                <form action="{{ route('OWdelete', ['id' => $data->id]) }}">
+                <form action="{{ route('OWdelete', ['id' => $data->id]) }}" class="m-2">
                     @csrf
                     <button class="btn btn-danger">
                         Удалить
@@ -41,7 +41,7 @@
         <br>
         <div class="d-flex">
             <div class="">
-                {{ $data->description }}
+                {!! $data->description !!}
             </div>
             <div class="OWcover">
                 @php
@@ -66,7 +66,7 @@
         </h2>
         <br>
         <div class="">
-            {{ $data->what_we_do }}
+            {!! $data->what_we_do !!}
         </div>
     </div>
 

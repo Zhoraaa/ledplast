@@ -27,12 +27,21 @@ class OurWorksController extends Controller
 
     public function save(Request $request)
     {
-        function loadMedia($imgs, $work_id)
+        // dd($request->all());
+        function loadCover($img)
+        {
+            $coverName = time() . '.' . $img->extension();
+            $coverPath = $img->storeAs('public/imgs/our_works/covers/', $coverName);
+
+            return $coverName;
+        }
+
+        function loadMediaOW($imgs, $work_id)
         {
             $counter = 1;
             foreach ($imgs as $image) {
                 $fileName = time() . '_' . $counter . '.' . $image->extension();
-                $imagePath = $image->storeAs('public/imgs/our_works', $fileName);
+                $imagePath = $image->storeAs('public/imgs/our_works/mediafiles/', $fileName);
                 OurWorksMedia::create([
                     'work_id' => $work_id,
                     'image' => $fileName
@@ -41,33 +50,62 @@ class OurWorksController extends Controller
             }
         }
 
+        function delCoverOW($oldCover)
+        {
+        }
+        function delMediaOW($oldFiles, $work_id)
+        {
+            foreach ($oldFiles as $oldFile) {
+                $filePath = 'public/imgs/our_works/mediafiles/' . $oldFile->image;
+                if (Storage::exists($filePath)) {
+                    Storage::delete($filePath);
+                }
+                OurWorksMedia::where('work_id', $work_id)->delete();
+            }
+        }
+
         if (!$request->work_id) {
+
+            // Добавление 
+
+            if ($request->hasFile('cover')) {
+                $coverName = loadCover($request->cover);
+            }
+
             $work_id = OurWorks::insertGetId([
                 'name' => $request->name,
-                'description' => $request->description,
-                'cost' => $request->cost,
-                'type' => $request->type
+                'description' => $request->desc,
+                'what_we_do' => $request->wedo,
+                'year' => $request->year,
+                'cover' => $coverName ?? 'default.png'
             ]);
 
-            if ($request->hasFile('images') && is_array($request->file('images'))) {
-                loadMedia($request->images, $work_id);
+            if ($request->hasFile('media') && is_array($request->file('media'))) {
+                loadMediaOW($request->media, $work_id);
             }
         } else {
-            // dd($request->images);
+
             // Обновление
+
             $update['updated_at'] = null;
-            if ($request->hasFile('images') && is_array($request->file('images'))) {
+
+            if ($request->hasFile('cover')) {
+                $oldCover = OurWorks::select('cover')->find($request->work_id);
+                delCoverOW($oldCover);
+
+                $coverName = loadCover($request->cover);
+                OurWorks::where('id', '=', $request->work_id)
+                    ->update([
+                        'cover' => $coverName
+                    ]);
+            }
+
+            if ($request->hasFile('media') && is_array($request->file('media'))) {
                 $oldFiles = OurWorksMedia::select('image')->where('work_id', $request->work_id)->get();
 
-                foreach ($oldFiles as $oldFile) {
-                    $filePath = 'public/imgs/OurWorks/' . $oldFile->image;
-                    if (Storage::exists($filePath)) {
-                        Storage::delete($filePath);
-                    }
-                    OurWorksMedia::where('work_id', $request->work_id)->delete();
-                }
+                delMediaOW($oldFiles, $request->work_id);
 
-                loadMedia($request->images, $request->work_id);
+                loadMediaOW($request->media, $request->work_id);
             }
 
             $toUPD = $request->toArray();
@@ -75,10 +113,11 @@ class OurWorksController extends Controller
             // dd($toUPD);
             $testing = $OurWorks->toArray();
 
+            // формирование массива обновленных данных на основе данных из базы и новых
             foreach ($testing as $key => $item) {
                 switch ($key) {
                     case 'id':
-                    case 'image':
+                    case 'cover':
                     case 'created_at':
                     case 'updated_at':
                         break;
@@ -96,7 +135,7 @@ class OurWorksController extends Controller
             $work_id = $request->work_id;
         }
 
-        return redirect()->route('seeOurWorks', ['id' => $work_id]);
+        return redirect()->route('OWview', ['id' => $work_id]);
     }
 
     public function editor(Request $request)
@@ -109,19 +148,14 @@ class OurWorksController extends Controller
     }
     public function delete(Request $request)
     {
-        // dd($request->id);
         $oldFiles = OurWorksMedia::select('image')->where('work_id', $request->id)->get();
+        $oldCover = OurWorks::select('cover')->find($request->id);
+        dd($oldCover);
 
-        foreach ($oldFiles as $oldFile) {
-            $filePath = 'public/imgs/OurWorks/' . $oldFile->image;
-            // dd($filePath);
-            if (Storage::exists($filePath)) {
-                Storage::delete($filePath);
-            }
-            OurWorksMedia::where('work_id', $request->id)->delete();
-        }
+        delCoverOW($oldCover);
+        delMediaOW($oldFiles, $request->id);
 
-        $OurWorks = DB::table("OurWorks")->where('id', $request->id)->delete();
+        $OurWorks = OurWorks::where('id', $request->id)->delete();
 
         return redirect()->route("shop");
     }

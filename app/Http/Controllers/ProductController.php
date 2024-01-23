@@ -34,6 +34,9 @@ class ProductController extends Controller
             $product_id = Product::insertGetId([
                 'name' => $request->name,
                 'description' => $request->description,
+                'parameters' => $request->parameters,
+                'advantages' => $request->advantages,
+                'usability' => $request->usability,
                 'cost' => $request->cost,
                 'type' => $request->type
             ]);
