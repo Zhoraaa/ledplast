@@ -104,7 +104,7 @@ class ProductController extends Controller
         }
 
         if (!$request->filled('_token') && !$request->filled('category')) {
-            $query = Product::select();
+            $query = Product::join('', '', '')->select();
         } elseif ($request->filled('category')) {
             $query = Product::where('type', $request->category);
         } else {

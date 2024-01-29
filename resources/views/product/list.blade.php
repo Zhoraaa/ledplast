@@ -137,7 +137,7 @@
                         <a href="{{ route('seeProduct', ['id' => $product->id]) }}">
                             <h5 class="bindigo-text lt-bold">{{ $name }}</h5>
                         </a>
-                        <p>{{ $product->cost }}₽</p>
+                        <p>{{ $product->type }}</p>
                     </div>
                     <a href="{{ route('seeProduct', ['id' => $product->id]) }}"
                         class="btn btn-primary rounded centering-m">Подробнее</a>
