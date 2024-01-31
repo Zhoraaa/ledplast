@@ -30,20 +30,20 @@
     <br>
     <br>
 
-    <div class="w60 d-flex justify-content-around">
-        <div class="d-flex flex-column centering">
+    <div class="w60 d-flex flex-wrap justify-content-around">
+        <div class="d-flex flex-wrap flex-column centering">
             <img src="./imgs/office-building_2086058.svg" alt="" class="contact-img">
             <p class="contact-text">г. Уфа, ул. Красина, д. 21</p>
         </div>
-        <div class="d-flex flex-column centering">
+        <div class="d-flex flex-wrap flex-column centering">
             <img src="./imgs/clock_992700.svg" alt="" class="contact-img">
             <p class="contact-text">Пн-Вс: 10.00 - 19.00</p>
         </div>
-        <div class="d-flex flex-column centering">
+        <div class="d-flex flex-wrap flex-column centering">
             <img src="./imgs/telephone_159832.svg" alt="" class="contact-img">
             <p class="contact-text">+7 (347) 266 06-78</p>
         </div>
-        <div class="d-flex flex-column centering">
+        <div class="d-flex flex-wrap flex-column centering">
             <img src="./imgs/email_2787620.svg" alt="" class="contact-img">
             <p class="contact-text">info@ledplast.ru</p>
         </div>
@@ -57,7 +57,7 @@
     <br>
     <br>
 
-    <div class="w60 d-flex flex-wrap align-items-center justify-content-between">
+    <div class="w60 d-flex flex-wrap flex-wrap align-items-center justify-content-between">
         <div>
             <h3 class="bgray-text lt-bold lt-up">
                 Мы в соцсетях

@@ -32,14 +32,14 @@
     <br>
 
     <div class="w60">
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-wrap justify-content-between align-items-center">
             <h2 class="bindigo-text lt-bold lt-up">
                 {{ $data->name }}
             </h2>
             <div class="bgray-text lt-thin lt-up no-matter">ПРОЕКТ {{ $data->year }}</div>
         </div>
         <br>
-        <div class="d-flex">
+        <div class="d-flex flex-wrap">
             <div class="">
                 {!! $data->description !!}
             </div>

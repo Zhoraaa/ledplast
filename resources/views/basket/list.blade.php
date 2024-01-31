@@ -58,7 +58,7 @@
                         <td>{{ $order->cost }}₽</td>
                         <td>{{ $order->status }}</td>
                         <td>
-                            <div class="d-flex">
+                            <div class="d-flex flex-wrap">
                                 <form action="{{ route('basketExclude', ['id' => $order->id]) }}" method="post">
                                     @csrf
                                     <button class="btn btn-danger m-2">

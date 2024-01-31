@@ -48,7 +48,7 @@
                         <td>{{ $user->role }}</td>
                         <td>{{ $user->banned ? 'Забанен' : 'Обычный' }}</td>
                         <td>
-                            <div class="d-flex">
+                            <div class="d-flex flex-wrap">
                                 @if ($user->role === 'Покупатель' && !$user->banned)
                                     <form action="{{ route('doMod', ['id' => $user->id]) }}" method="post">
                                         @csrf

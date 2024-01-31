@@ -82,22 +82,24 @@
                     </li>
                 @endguest
                 @auth
-                    @if (auth()->user()->role === 1)
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ @route('usrRedaction') }}">Администрирование</a>
-                        </li>
-                    @endif
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ @route('cart') }}">Корзина</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ @route('user') }}">Личный кабинет</a>
-                    </li>
-                    <li class="nav-item centering">
-                        <form action="{{ @route('logout') }}" method="POST">
-                            @csrf
-                            <button class="lt-thin bg-bindigo border-0 text-light" href="#">Выход</button>
-                        </form>
+
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                            aria-expanded="false">
+                            Пользователь
+                        </a>
+                        <div class="dropdown-menu active">
+                            @if (auth()->user()->role === 1)
+                                <a class="dropdown-item text-white hov-gray"
+                                    href="{{ @route('usrRedaction') }}">Администрирование</a>
+                            @endif
+                            <a class="dropdown-item text-white hov-gray" href="{{ @route('cart') }}">Корзина</a>
+                            <a class="dropdown-item text-white hov-gray" href="{{ @route('user') }}">Личный кабинет</a>
+                            <form action="{{ @route('logout') }}" method="POST">
+                                @csrf
+                                <button class="lt-thin bg-bindigo border-0 dropdown-item text-white hov-gray" href="#">Выход</button>
+                            </form>
+
                     </li>
                 @endauth
             </ul>

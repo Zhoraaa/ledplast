@@ -5,7 +5,20 @@
 @endsection
 
 @php
+    switch ($product->ProductMedia()->count()) {
+        case 0:
+            $link = 'imgs/default.png';
+            break;
+        case 1:
+            $link = 'storage/imgs/products/' . $product->cover;
+            break;
+
+        default:
+            break;
+    }
     $link = $product->ProductMedia()->count() === 0 ? 'imgs/default.png' : 'storage/imgs/products/' . $product->cover;
+    $active = ' active';
+    // dd($product->productMedia->all())
 @endphp
 
 @section('body')
@@ -14,7 +27,7 @@
     @auth
         @if (auth()->user()->role < 2)
             <br>
-            <div class="d-flex centering">
+            <div class="d-flex flex-wrap centering">
                 <form action="{{ @route('productEdit', ['id' => $product->id]) }}" method="post">
                     @csrf
                     <button class="btn btn-secondary m-2">Редактировать товар</button>
@@ -34,14 +47,21 @@
     <br>
 
     <div class="w80">
-        <div class="d-flex about-product flex-wrap centering">
-            <div class="product-cover m-2">
-                <img src="{{ asset($link) }}" alt="Изображение продукта">
-            </div>
-            <div class="d-flex flex-column m-2">
-                <h1 class="lt-bold lt-up bindigo-text m-2">{{ $product->name }}</h1>
-                <span class="m-2">{!! $product->description !!}</span>
-                <h4 class="m-2">{{ $product->cost }}₽</h4>
+        <div class="d-flex flex-wrap about-product flex-wrap centering justify-content-around">
+            @if ($link)
+                <div class="product-cover m-2 d-flex align-items-center justify-content-center">
+                    <img src="{{ asset($link) }}" alt="Изображение продукта">
+                </div>
+            @endif
+            <div class="product-text d-flex flex-wrap flex-column m-2">
+                <h1 class="lt-bold lt-up bindigo-text">{{ $product->name }}</h1>
+
+                @if ($product->advantages != null)
+                    <span class="m-2">{!! $product->description !!}</span>
+                @endif
+                @if ($product->cost !== null)
+                    <h4 class="m-2">{{ $product->cost }}₽</h4>
+                @endif
                 @auth
                     <form action="{{ @route('addToCart', ['id' => $product->id]) }}" method="post">
                         @csrf
@@ -57,26 +77,57 @@
     <div class="divider"></div>
     <br>
     <br>
-
-    <div class="w80 d-flex centering flex-row-reverse justify-content-between">
-        <div class="plank-info">
-            <div>
-                <span class="lt-bold">sdas</span>
-                <span class="lt-up"></span>
-            </div>
-        </div>
-        <div class="text-info">
-            <br>
-            <br>
-            <div>
-                <h1 class="lt-bold lt-up bindigo-text m-2">Преимущества:</h1>
-            </div>
-            <br>
-            <div>
-                <h1 class="lt-bold lt-up bindigo-text m-2">Применение:</h1>
-            </div>
-        </div>
+    <div class="text-info">
         <br>
-        <br>
+        @if ($product->parameters != null)
+            <div class="w60">
+                <h1 class="lt-bold lt-up bindigo-text">Параметры:</h1>
+                <span class="m-2 bgray-text">{!! $product->parameters !!}</span>
+            </div>
+        @endif
+        @if ($product->advantages != null)
+            <div class="w60">
+                <h1 class="lt-bold lt-up bindigo-text">Преимущества:</h1>
+                <span class="m-2 bgray-text">{!! $product->advantages !!}</span>
+            </div>
+        @endif
+        @if ($product->usability != null)
+            <div class="w60">
+                <h1 class="lt-bold lt-up bindigo-text">Применение:</h1>
+                <span class="m-2 bgray-text">{!! $product->usability !!}</span>
+            </div>
+        @endif
     </div>
+    <br>
+    <div class="w60">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                @foreach ($product->productMedia as $productMedia)
+                    <div class="carousel-item{{ $active }}">
+                        <div class="carousel-item-iwrapper">
+                            <img class="d-block w-100" src="{{ asset('storage/imgs/products/' . $productMedia->image) }}"
+                                alt="{{ $productMedia->image }}">
+                        </div>
+                    </div>
+                    @php
+                        $active = null;
+                    @endphp
+                @endforeach
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <br>
 @endsection

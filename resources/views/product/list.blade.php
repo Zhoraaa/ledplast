@@ -27,7 +27,7 @@
     <br>
     <br>
 
-    <div class="w80 d-flex justify-content-between align-items-center">
+    <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
         <h1 class="lt-bold lt-up bindigo-text">Каталог товаров</h1>
         @auth
             @if (auth()->user()->role < 2)
@@ -62,14 +62,14 @@
 
     <br>
 
-    <div class="d-flex">
+    <div class="d-flex flex-wrap">
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form class="modal-content" method="GET" action="{{ route('shop') }}">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Фильтрация</h5>
+                        <h5 class="modal-title lt-bold lt-up bindigo-text" id="exampleModalLabel">Фильтрация</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -103,55 +103,52 @@
 
     <div class="divider"></div>
 
-    <div class="w80">
+    <br>
+    <br>
 
-        <br>
-        <br>
+    <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
+        <h1 class="lt-bold lt-up bindigo-text">Товары по вашему запросу</h1>
 
-        <div class="d-flex justify-content-between align-items-center">
-            <h1 class="lt-bold lt-up bindigo-text">Товары по вашему запросу</h1>
+        <span class="bgray-text m-2">Всего позиций: {{ $data['count'] }}</span>
 
-            <span class="bgray-text m-2">Всего позиций: {{ $data['count'] }}</span>
-
-            <a href="#about" class="bgray-text m-2">Читать подробнее</a>
-        </div>
-
-        <br>
-
-        {{-- <div class="w80 centering pagination">
-            {{ $products->links() }}
-        </div> --}}
-
-        <div class="pcards-wrapper">
-            @foreach ($products as $product)
-                @php
-                    $link = ($product->ProductMedia()->count() === 0) ? 'imgs/default.png' : 'storage/imgs/products/' . $product->cover;
-
-                    $name =  strlen($product->name) > 13 ? substr($product->name, 0, 13).'...' : $product->name ;
-                @endphp
-                <div class="product-card">
-                    <div class="pcard-cover centering">
-                        <img src="{{ asset($link) }}" alt="">
-                    </div>
-                    <div class="pcard-text">
-                        <a href="{{ route('seeProduct', ['id' => $product->id]) }}">
-                            <h5 class="bindigo-text lt-bold">{{ $name }}</h5>
-                        </a>
-                        <p>{{ $product->type }}</p>
-                    </div>
-                    <a href="{{ route('seeProduct', ['id' => $product->id]) }}"
-                        class="btn btn-primary rounded centering-m">Подробнее</a>
-                </div>
-            @endforeach
-        </div>
-
-        {{-- <div class="w80 centering pagination">
-            {{ $products->links() }}
-        </div> --}}
-
-        <br>
-        <br>
+        <a href="#about" class="bgray-text m-2">Читать подробнее</a>
     </div>
+
+    <br>
+
+    {{-- <div class="w80 centering pagination">
+            {{ $products->links() }}
+        </div> --}}
+
+    <div class="pcards-wrapper w80">
+        @foreach ($products as $product)
+            @php
+                $link = $product->ProductMedia()->count() === 0 ? 'imgs/default.png' : 'storage/imgs/products/' . $product->cover;
+
+                $name = strlen($product->name) > 13 ? substr($product->name, 0, 13) . '...' : $product->name;
+            @endphp
+            <div class="product-card">
+                <div class="pcard-cover centering">
+                    <img src="{{ asset($link) }}" alt="">
+                </div>
+                <div class="pcard-text">
+                    <a href="{{ route('seeProduct', ['id' => $product->id]) }}">
+                        <h5 class="bindigo-text lt-bold">{{ $name }}</h5>
+                    </a>
+                    <p>{{ $product->category }}</p>
+                </div>
+                <a href="{{ route('seeProduct', ['id' => $product->id]) }}"
+                    class="btn btn-primary rounded centering-m">Подробнее</a>
+            </div>
+        @endforeach
+    </div>
+
+    {{-- <div class="w80 centering pagination">
+            {{ $products->links() }}
+        </div> --}}
+
+    <br>
+    <br>
 
     <div class="divider"></div>
 

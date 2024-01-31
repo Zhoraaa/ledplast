@@ -104,7 +104,7 @@ class ProductController extends Controller
         }
 
         if (!$request->filled('_token') && !$request->filled('category')) {
-            $query = Product::join('', '', '')->select();
+            $query = Product::join('product_types', 'products.type', 'product_types.id')->select('products.*', 'product_types.name as products.category');
         } elseif ($request->filled('category')) {
             $query = Product::where('type', $request->category);
         } else {
@@ -126,7 +126,7 @@ class ProductController extends Controller
     }
     public function seeProduct($id)
     {
-        $product = Product::where("id", $id)->first();
+        $product = Product::where("id", $id)->with('productMedia')->first();
 
         // dd($product);
 

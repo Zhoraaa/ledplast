@@ -17,16 +17,16 @@
         <br>
         <br>
 
-        <div class="d-flex flex-column align-items-center">
+        <div class="d-flex flex-wrap flex-column align-items-center">
             @foreach ($ourWorks as $ourWork)
                 @php
                     $link = ($ourWork->cover === 'default.png') ? 'imgs/default.png' : 'storage/imgs/our_works/covers/'.$ourWork->cover;
                 @endphp
-                <div class="d-flex align-items-start w-100">
-                    <div class="OWcover d-flex align-items-start">
+                <div class="d-flex flex-wrap align-items-start w-100">
+                    <div class="OWcover d-flex flex-wrap align-items-start">
                         <img src="{{ asset($link) }}" alt="">
                     </div>
-                    <div class="p-3 d-flex flex-column">
+                    <div class="p-3 d-flex flex-wrap flex-column">
                         <h3 class="bgray-text lt-bold lt-up">
                             {{ $ourWork->name }}
                         </h3>
