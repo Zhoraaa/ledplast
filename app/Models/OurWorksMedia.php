@@ -12,4 +12,8 @@ class OurWorksMedia extends Model
     public $timestamps = false;
 
     use HasFactory;
+
+    public function owork() {
+        return $this->belongsTo(OurWorks::class, 'work_id');
+    }
 }

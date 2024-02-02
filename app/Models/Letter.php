@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Letter extends Model
 {
-    protected $fillable = ['image'];
+    protected $fillable = ['image', 'from'];
 
     use HasFactory;
 }

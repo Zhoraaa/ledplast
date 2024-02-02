@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    Главная
+    Уральский светотехнический заавод
 @endsection
 
 @php
@@ -16,6 +16,7 @@
         'Мобильное освещение',
         'Архитектурная подсветка',
     ];
+    $ourWorks = $data['oworks'];
 @endphp
 
 @section('body')
@@ -81,6 +82,67 @@
             </div>
         </div>
     </div>
+
+    {{-- Наши работы --}}
+
+    @auth
+        @if (auth()->user()->role < 3)
+            <div class="divider"></div>
+            <br>
+            <div class="d-flex flex-wrap centering">
+                <form action="{{ @route('OWnew') }}" method="post">
+                    @csrf
+                    <button class="btn btn-primary m-2">Добавить проект</button>
+                </form>
+            </div>
+            <br>
+        @endif
+    @endauth
+
+    <div class="divider"></div>
+
+    <div class="d-flex flex-wrap flex-column align-items-center w60">
+        @foreach ($ourWorks as $ourWork)
+            @php
+                $link = $ourWork->cover === 'default.png' ? 'imgs/default.png' : 'storage/imgs/our_works/covers/' . $ourWork->cover;
+            @endphp
+            <div class="d-flex flex-wrap align-items-start w-100">
+                <div class="OWcover d-flex flex-wrap align-items-start">
+                    <img src="{{ asset($link) }}" alt="">
+                </div>
+                <div class="p-3 d-flex flex-wrap flex-column">
+                    <h3 class="bgray-text lt-bold lt-up">
+                        {{ $ourWork->name }}
+                    </h3>
+                    <div class="bgray-text lt-thin">
+                        {{ $ourWork->year }}
+                    </div>
+                    <br>
+                    <div class="bgray-text">
+                        {!! strlen($ourWork->description) < 200 ? $ourWork->description : substr($ourWork->description, 0, 150) . '...' !!}
+                    </div>
+                    <br>
+                    <a href="{{ route('OWview', ['id' => $ourWork->id]) }}"><button class="btn btn-primary">Подробнее
+                            →</button></a>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    @auth
+        @if (auth()->user()->role < 3)
+            <div class="divider"></div>
+            <br>
+            <div class="d-flex flex-wrap centering">
+                <form action="{{ @route('letterNew') }}" method="post">
+                    @csrf
+                    <button class="btn btn-primary m-2">Добавить письмо</button>
+                </form>
+            </div>
+            <br>
+        @endif
+    @endauth
+
 
     <div class="divider"></div>
     {{-- Вакансии --}}

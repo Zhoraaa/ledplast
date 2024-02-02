@@ -1,11 +1,12 @@
 @extends('layouts.layout')
 
 @section('title')
-    Редактор работ
+    Редактор проектов
 @endsection
 
 @section('body')
     <div class="divider"></div>
+    
     <br>
     <br>
 

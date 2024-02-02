@@ -20,7 +20,7 @@
         <div class="d-flex flex-wrap flex-column align-items-center">
             @foreach ($ourWorks as $ourWork)
                 @php
-                    $link = ($ourWork->cover === 'default.png') ? 'imgs/default.png' : 'storage/imgs/our_works/covers/'.$ourWork->cover;
+                    $link = $ourWork->cover === 'default.png' ? 'imgs/default.png' : 'storage/imgs/our_works/covers/' . $ourWork->cover;
                 @endphp
                 <div class="d-flex flex-wrap align-items-start w-100">
                     <div class="OWcover d-flex flex-wrap align-items-start">
@@ -35,10 +35,11 @@
                         </div>
                         <br>
                         <div class="bgray-text">
-                            {!! strlen($ourWork->description) < 200 ? $ourWork->description : substr($ourWork->description, 0, 150).'...' !!}
+                            {!! strlen($ourWork->description) < 200 ? $ourWork->description : substr($ourWork->description, 0, 150) . '...' !!}
                         </div>
                         <br>
-                        <a href="{{ route('OWview', ['id' => $ourWork->id]) }}"><button class="btn btn-primary">Подробнее →</button></a>
+                        <a href="{{ route('OWview', ['id' => $ourWork->id]) }}"><button class="btn btn-primary">Подробнее
+                                →</button></a>
                     </div>
                 </div>
             @endforeach
