@@ -44,6 +44,7 @@ span {
 .text-center {
   text-align: center;
 }
+
 .text-right {
   text-align: right;
 }
@@ -53,6 +54,7 @@ span {
   width: 80%;
   margin: auto;
 }
+
 .w60 {
   width: 60%;
   margin: auto;
@@ -179,7 +181,7 @@ footer {
   color: white;
 }
 
-.l-point > a {
+.l-point>a {
   color: white;
 }
 
@@ -197,7 +199,7 @@ footer {
   flex-wrap: wrap;
 }
 
-.ftr-office-info > * {
+.ftr-office-info>* {
   margin: 0;
 }
 
@@ -212,11 +214,12 @@ footer {
   gap: 1vh;
 }
 
-.ftr-logo > * {
+.ftr-logo>* {
   height: 7.5vh;
+  max-width: 80vw;
 }
 
-.ftr-soc-links > a > * {
+.ftr-soc-links>a>* {
   height: 5vh;
 }
 
@@ -248,8 +251,9 @@ footer {
   gap: 1vh;
 }
 
-.fullogo > * {
+.fullogo>* {
   height: 7vh;
+  max-width: 80vw;
 }
 
 /* grid ctlg */
@@ -289,7 +293,7 @@ footer {
   width: 15vh;
 }
 
-.logo-ctg > * {
+.logo-ctg>* {
   width: 10vh;
   height: 10vh;
 }
@@ -314,7 +318,7 @@ footer {
     width: 15vh;
   }
 
-  .logo-ctg > * {
+  .logo-ctg>* {
     width: 10vh;
     height: 10vh;
   }
@@ -389,7 +393,7 @@ footer {
   overflow: hidden;
 }
 
-.pcard-cover > * {
+.pcard-cover>* {
   height: 20vh;
   width: 20vh;
 }
@@ -437,6 +441,7 @@ footer {
     display: none;
   }
 }
+
 @media (max-width: 800px) {
   .no-matter {
     display: none;
@@ -450,16 +455,20 @@ footer {
 
   overflow: hidden;
 }
-.product-cover > * {
+
+.product-cover>* {
   height: 40vh;
 }
+
 .product-text {
   width: 40vw;
 }
+
 @media (max-width: 800px) {
   .product-cover {
     width: 100%;
   }
+
   .product-text {
     width: 100%;
   }
@@ -475,16 +484,59 @@ footer {
 
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 @media (max-width: 1000px) {
   .carousel-item-iwrapper {
     height: 50vh;
   }
 }
+
 @media (max-width: 500px) {
   .carousel-item-iwrapper {
     height: 25vh;
   }
 }
-.carousel-item-iwrapper > * {
+
+.carousel-item-iwrapper>* {
   max-width: 100%;
+}
+
+/* Письма */
+.letter-wrapper {
+  --letter-sizing: 1.6vh;
+  height: calc(var(--letter-sizing) * 14);
+  width: calc(var(--letter-sizing) * 10);
+
+  margin: 2vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-shadow: 0px 0px 10px 0px #4d4d4d;
+
+  overflow: hidden;
+
+  transition: all 0.2s ease-in;
+}
+
+.letter-wrapper:hover {
+  --letter-sizing: 1.8vh;
+  margin: 1vh;
+}
+
+.letter {
+  height: 100%;
+}
+
+.letter-hover {
+  height: 100%;
+  width: 80%;
+
+  background-color: #00000000;
+  transition: all 0.2s ease-in;
+}
+.letter-wrapper:hover .letter-hover {
+  background-color: #4d4d4d60;
+  transform: translateY(-110%);
 }

@@ -16,7 +16,8 @@
         'Мобильное освещение',
         'Архитектурная подсветка',
     ];
-    $ourWorks = $data['oworks'];
+    $ourWorks = $data['oworks'] ?? false;
+    $letters = $data['letters'] ?? false;
 @endphp
 
 @section('body')
@@ -85,10 +86,11 @@
 
     {{-- Наши работы --}}
 
+    <div class="divider"></div>
+    <br>
+
     @auth
         @if (auth()->user()->role < 3)
-            <div class="divider"></div>
-            <br>
             <div class="d-flex flex-wrap centering">
                 <form action="{{ @route('OWnew') }}" method="post">
                     @csrf
@@ -99,50 +101,75 @@
         @endif
     @endauth
 
-    <div class="divider"></div>
-
-    <div class="d-flex flex-wrap flex-column align-items-center w60">
-        @foreach ($ourWorks as $ourWork)
-            @php
-                $link = $ourWork->cover === 'default.png' ? 'imgs/default.png' : 'storage/imgs/our_works/covers/' . $ourWork->cover;
-            @endphp
-            <div class="d-flex flex-wrap align-items-start w-100">
-                <div class="OWcover d-flex flex-wrap align-items-start">
-                    <img src="{{ asset($link) }}" alt="">
-                </div>
-                <div class="p-3 d-flex flex-wrap flex-column">
-                    <h3 class="bgray-text lt-bold lt-up">
-                        {{ $ourWork->name }}
-                    </h3>
-                    <div class="bgray-text lt-thin">
-                        {{ $ourWork->year }}
+    @if (!$ourWorks->isEmpty())
+        <div class="d-flex flex-column align-items-center w80">
+            @foreach ($ourWorks as $ourWork)
+                @php
+                    $link = $ourWork->cover === 'default.png' ? 'imgs/default.png' : 'storage/imgs/our_works/covers/' . $ourWork->cover;
+                @endphp
+                <div class="d-flex flex-wrap justify-content-around align-items-center w-100 m-2">
+                    <div class="OWcover centering">
+                        <img src="{{ asset($link) }}" alt="">
                     </div>
-                    <br>
-                    <div class="bgray-text">
-                        {!! strlen($ourWork->description) < 200 ? $ourWork->description : substr($ourWork->description, 0, 150) . '...' !!}
+                    <div class="m-2 d-flex flex-wrap flex-column w60">
+                        <h3 class="bgray-text lt-bold lt-up">
+                            {{ $ourWork->name }}
+                        </h3>
+                        <div class="bgray-text lt-thin">
+                            {{ $ourWork->year }}
+                        </div>
+                        <br>
+                        <div class="bgray-text">
+                            {!! strlen($ourWork->description) < 200 ? $ourWork->description : substr($ourWork->description, 0, 150) . '...' !!}
+                        </div>
+                        <br>
+                        <a href="{{ route('OWview', ['id' => $ourWork->id]) }}"><button class="btn btn-primary">Подробнее
+                                →</button></a>
                     </div>
-                    <br>
-                    <a href="{{ route('OWview', ['id' => $ourWork->id]) }}"><button class="btn btn-primary">Подробнее
-                            →</button></a>
                 </div>
-            </div>
-        @endforeach
-    </div>
+                <br>
+            @endforeach
+        </div>
+    @endif
 
-    @auth
-        @if (auth()->user()->role < 3)
-            <div class="divider"></div>
-            <br>
-            <div class="d-flex flex-wrap centering">
-                <form action="{{ @route('letterNew') }}" method="post">
-                    @csrf
-                    <button class="btn btn-primary m-2">Добавить письмо</button>
-                </form>
-            </div>
-            <br>
-        @endif
-    @endauth
+    @if (!$letters->isEmpty())
+        <div class="divider"></div>
+        <br>
 
+        <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
+            <h1 class="lt-bold lt-up bindigo-text">Благодарственные письма</h1>
+            @auth
+                @if (auth()->user()->role < 3)
+                    <div class="d-flex flex-wrap centering">
+                        <form action="{{ @route('letterNew') }}" method="post">
+                            @csrf
+                            <button class="btn btn-primary m-2">Добавить письмо</button>
+                        </form>
+                    </div>
+                @endif
+            @endauth
+        </div>
+
+        <div class="w80 d-flex justify-content-start flex-wrap letters-wrapper">
+            @foreach ($letters as $letter)
+                <div class="letter-wrapper">
+                    <img src="{{ asset('storage/imgs/letter_scans/' . $letter->image) }}" alt="{{ $letter->from }}"
+                        class="letter">
+                    @auth
+                        @if (auth()->user()->role < 3)
+                            <div class="letter-hover d-flex flex-column centering">
+                                <form action="{{ route('letterDel', ['id' => $letter->id]) }}" method="post">
+                                    @csrf
+                                    <button class="btn btn-danger">Удалить письмо</button>
+                                </form>
+                            </div>
+                        @endif
+                    @endauth
+                </div>
+            @endforeach
+        </div>
+        <br>
+    @endif
 
     <div class="divider"></div>
     {{-- Вакансии --}}
@@ -154,7 +181,8 @@
                 </h1>
                 <span class="bgray-text">
                     Корпоративная связь, софинансирование абонементов в фитнес – клуб (Leo Fit), система накопления
-                    персональных дней (1 день в год), отсутствие обязательного dress-code, книжный клуб (библиотека), ДМС
+                    персональных дней (1 день в год), отсутствие обязательного dress-code, книжный клуб (библиотека),
+                    ДМС
                     (подбор сети клиник, оптимального корпоративного тарифа) по согласованию, софинансирование авиа- и
                     ж/д-билетов в отпуск по РФ по согласованию.
                 </span>

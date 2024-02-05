@@ -9,5 +9,7 @@ class Letter extends Model
 {
     protected $fillable = ['image', 'from'];
 
+    public $timestamps = false;
+
     use HasFactory;
 }

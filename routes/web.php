@@ -59,10 +59,6 @@ Route::post('/admin/undoMod/{id}', [AdminController::class, "undoMod"])->middlew
 Route::post('/admin/ban/{id}', [AdminController::class, "ban"])->middleware('auth')->name('ban');
 Route::post('/admin/unban/{id}', [AdminController::class, "unban"])->middleware('auth')->name('unban');
 
-Route::get('/delivery', function () { return view('delivery'); })->name('delivery'); // в карту
-Route::get('/about', function () { return view('about'); })->name('about'); // в карту
-Route::get('/contacts', function () { return view('contacts'); })->name('contacts'); // в карту
-
 Route::get('/ourWorks', [OurWorksController::class, "getAll"])->name('ourWorks'); // в карту
 Route::post('/ourWork/new', [OurWorksController::class, "editor"])->middleware('auth')->name('OWnew');
 Route::get('/ourWork/{id}', [OurWorksController::class, "checkWork"])->name('OWview');
@@ -72,4 +68,9 @@ Route::post('/ourWork/save', [OurWorksController::class, "save"])->middleware('a
 
 Route::post('/letter/new', function () { return view('letter_editor'); })->middleware('auth')->name('letterNew');
 Route::post('/letter/save', [LetterController::class, "save"])->middleware('auth')->name('letterSave');
-Route::post('/letter/delete', [LetterController::class, "delete"])->middleware('auth')->name('letterDel');
+Route::post('/letter/{id}/delete', [LetterController::class, "delete"])->middleware('auth')->name('letterDel');
+
+Route::get('/delivery', function () { return view('delivery'); })->name('delivery'); // в карту
+Route::get('/about', function () { return view('about'); })->name('about'); // в карту
+Route::get('/contacts', function () { return view('contacts'); })->name('contacts'); // в карту
+Route::get('/file/{filePath}', [PageController::class, 'file'])->name('file');
