@@ -31,6 +31,7 @@
     {{-- Local --}}
     <link rel="stylesheet" href="{{ asset('style.css') }}">
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('imgs/logo.svg') }}" type="image/x-icon">
 </head>
 
 <body>

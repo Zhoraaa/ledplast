@@ -125,7 +125,6 @@
             @php
                 $link = $product->ProductMedia()->count() === 0 ? 'imgs/default.png' : 'storage/imgs/products/' . $product->cover;
 
-                $name = strlen($product->name) > 13 ? substr($product->name, 0, 13) . '...' : $product->name;
             @endphp
             <div class="product-card">
                 <div class="pcard-cover centering">
@@ -133,7 +132,7 @@
                 </div>
                 <div class="pcard-text">
                     <a href="{{ route('seeProduct', ['id' => $product->id]) }}">
-                        <h5 class="bindigo-text lt-bold">{{ $name }}</h5>
+                        <h5 class="bindigo-text lt-bold">{{ $product->name }}</h5>
                     </a>
                     <p>{{ $product->category }}</p>
                 </div>

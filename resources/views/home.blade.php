@@ -16,12 +16,15 @@
         'Мобильное освещение',
         'Архитектурная подсветка',
     ];
-    $ourWorks = $data['oworks'] ?? false;
-    $letters = $data['letters'] ?? false;
+    $ourWorks = $data['oworks'];
+    $letters = $data['letters'];
 @endphp
 
 @section('body')
-    <div class="cover">
+    <div class="cover-wrapper">
+        <div class="d-flex flex-column centering">
+            <img src="{{ asset('imgs/sitecover.jpg') }}" alt="" class="cover">
+        </div>
         <div class="blur centering">
             <div class="logos text-light">
                 <div class="fullogo">
@@ -59,28 +62,27 @@
 
     <div class="divider"></div>
 
-    {{-- Услуги --}}
+    <br>
 
-    <div class="big-block">
-        <div class="info-wrapper">
-            <div class="guy no-matter">
-                <img src="imgs/services.png" alt="">
+    <div class="w80 d-flex">
+        <div class="guy no-matter">
+            <img src="imgs/services.png" alt="">
+        </div>
+        <div class="d-flex flex-column">
+            <h1 class="bindigo-text lt-up lt-bold m-2">
+                Уcлуги
+            </h1>
+            <span class="bgray-text m-2">
+                Наша компания предоставляет широкий спектр услуг. Составление документации, проведение энергосервисных,
+                монтажных и геодезических работ. Ознакомиться с полным списком услуг вы можете на соответствующей
+                странице.
+            </span>
+            <div>
+                <a href="" class="btn btn-primary text-light bg-bindigo lt-up m-2">
+                    К каталогу услуг →
+                </a>
             </div>
-            <div class="main-info-elem">
-                <h1 class="bindigo-text lt-up lt-bold">
-                    Уcлуги
-                </h1>
-                <span class="bgray-text">
-                    Наша компания предоставляет широкий спектр услуг. Составление документации, проведение энергосервисных,
-                    монтажных и геодезических работ. Ознакомиться с полным списком услуг вы можете на соответствующей
-                    странице.
-                </span>
-                <div>
-                    <a href="" class="rounded-btn text-light bg-bindigo lt-up">
-                        К каталогу услуг →
-                    </a>
-                </div>
-            </div>
+            <br>
         </div>
     </div>
 
@@ -89,17 +91,20 @@
     <div class="divider"></div>
     <br>
 
-    @auth
-        @if (auth()->user()->role < 3)
-            <div class="d-flex flex-wrap centering">
-                <form action="{{ @route('OWnew') }}" method="post">
-                    @csrf
-                    <button class="btn btn-primary m-2">Добавить проект</button>
-                </form>
-            </div>
-            <br>
-        @endif
-    @endauth
+    <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
+        <h1 class="bindigo-text lt-bold lt-up">
+            Наши работы
+        </h1>
+
+        @auth
+            @if (auth()->user()->role < 3)
+                    <form action="{{ @route('OWnew') }}" method="post">
+                        @csrf
+                        <button class="btn btn-primary m-2">Добавить проект</button>
+                    </form>
+            @endif
+        @endauth
+    </div>
 
     @if (!$ourWorks->isEmpty())
         <div class="d-flex flex-column align-items-center w80">
@@ -132,73 +137,73 @@
         </div>
     @endif
 
-    @if (!$letters->isEmpty())
-        <div class="divider"></div>
-        <br>
+    <br>
 
-        <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
-            <h1 class="lt-bold lt-up bindigo-text">Благодарственные письма</h1>
-            @auth
-                @if (auth()->user()->role < 3)
-                    <div class="d-flex flex-wrap centering">
-                        <form action="{{ @route('letterNew') }}" method="post">
-                            @csrf
-                            <button class="btn btn-primary m-2">Добавить письмо</button>
-                        </form>
-                    </div>
-                @endif
-            @endauth
-        </div>
+    <div class="divider"></div>
 
-        <div class="w80 d-flex justify-content-start flex-wrap letters-wrapper">
-            @foreach ($letters as $letter)
-                <div class="letter-wrapper">
-                    <img src="{{ asset('storage/imgs/letter_scans/' . $letter->image) }}" alt="{{ $letter->from }}"
-                        class="letter">
-                    @auth
-                        @if (auth()->user()->role < 3)
-                            <div class="letter-hover d-flex flex-column centering">
-                                <form action="{{ route('letterDel', ['id' => $letter->id]) }}" method="post">
-                                    @csrf
-                                    <button class="btn btn-danger">Удалить письмо</button>
-                                </form>
-                            </div>
-                        @endif
-                    @endauth
-                </div>
-            @endforeach
-        </div>
-        <br>
-    @endif
+    <br>
+
+    <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
+        <h1 class="lt-bold lt-up bindigo-text">Благодарственные письма</h1>
+        @auth
+            @if (auth()->user()->role < 3)
+                    <form action="{{ @route('letterNew') }}" method="post">
+                        @csrf
+                        <button class="btn btn-primary m-2">Добавить письмо</button>
+                    </form>
+            @endif
+        @endauth
+    </div>
+
+    <div class="w80 d-flex justify-content-start flex-wrap letters-wrapper">
+        @foreach ($letters as $letter)
+            <div class="letter-wrapper">
+                <img src="{{ asset('storage/imgs/letter_scans/' . $letter->image) }}" alt="Письмо от {{ $letter->from }}" title="Письмо от {{ $letter->from }}"
+                    class="letter">
+                @auth
+                    @if (auth()->user()->role < 3)
+                        <div class="letter-hover d-flex flex-column centering">
+                            <form action="{{ route('letterDel', ['id' => $letter->id]) }}" method="post">
+                                @csrf
+                                <button class="btn btn-danger">Удалить письмо</button>
+                            </form>
+                        </div>
+                    @endif
+                @endauth
+            </div>
+        @endforeach
+    </div>
+    <br>
 
     <div class="divider"></div>
     {{-- Вакансии --}}
-    <div class="big-block">
-        <div class="centering info-wrapper">
-            <div class="main-info-elem">
-                <h1 class="bindigo-text lt-up lt-bold">
-                    ВАКАНСИИ
-                </h1>
-                <span class="bgray-text">
-                    Корпоративная связь, софинансирование абонементов в фитнес – клуб (Leo Fit), система накопления
-                    персональных дней (1 день в год), отсутствие обязательного dress-code, книжный клуб (библиотека),
-                    ДМС
-                    (подбор сети клиник, оптимального корпоративного тарифа) по согласованию, софинансирование авиа- и
-                    ж/д-билетов в отпуск по РФ по согласованию.
-                </span>
-                <h1 class="bindigo-text lt-up lt-bold">
-                    СЕЙЧАС ИЩЕМ:
-                </h1>
-                <ul class="bgray-text lt-bold wewant">
-                    <li>Монатжника</li>
-                    <li>Высотника</li>
-                    <li>Сотника</li>
-                    <li>Прапорщика</li>
-                </ul>
-            </div>
-            <div class="guy no-matter">
-                <img src="imgs/vacancies.png" alt="">
-            </div>
+    <br>
+
+    <div class="w80 d-flex ">
+        <div class="d-flex flex-column">
+            <h1 class="bindigo-text lt-up lt-bold m-2">
+                ВАКАНСИИ
+            </h1>
+            <span class="bgray-text m-2">
+                Корпоративная связь, софинансирование абонементов в фитнес – клуб (Leo Fit), система накопления
+                персональных дней (1 день в год), отсутствие обязательного dress-code, книжный клуб (библиотека),
+                ДМС
+                (подбор сети клиник, оптимального корпоративного тарифа) по согласованию, софинансирование авиа- и
+                ж/д-билетов в отпуск по РФ по согласованию.
+            </span>
+            <h1 class="bindigo-text lt-up lt-bold m-2">
+                СЕЙЧАС ИЩЕМ:
+            </h1>
+            <ul class="bgray-text lt-bold wewant m-2">
+                <li>Монатжника</li>
+                <li>Высотника</li>
+                <li>Сотника</li>
+                <li>Прапорщика</li>
+            </ul>
+            <br>
+        </div>
+        <div class="guy no-matter">
+            <img src="imgs/vacancies.png" alt="">
         </div>
     </div>
 @endsection
