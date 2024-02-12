@@ -105,13 +105,27 @@ class ProductController extends Controller
 
         if (!$request->filled('_token') && !$request->filled('category')) {
             $query = Product::join('product_types', 'products.type', 'product_types.id')->select('products.*', 'product_types.name as products.category');
+
+            $title = 'Все товары';
         } elseif ($request->filled('category')) {
             $query = Product::where('type', $request->category);
+
+            $titleRaw = ProductType::select('name')->where('id', $request->category)->get()->toArray();
         } else {
             $types = array_keys($request->except('_token', 'order_by', 'sequence'));
 
             $query = Product::whereIn('type', $types)
-                ->orderBy($request->order_by, $request->sequence);
+            ->orderBy($request->order_by, $request->sequence);
+
+            $titleRaw = ProductType::select('name')->whereIn('id', $types)->get()->toArray();
+        }
+
+        if (isset($titleRaw)) {
+            $title = '';
+            foreach ($titleRaw as $tr_tmp) {
+                $title .= $tr_tmp['name'] . ', ';
+            }
+            $title = substr($title, 0, -2);
         }
 
         $data = takeData($query);
@@ -121,6 +135,12 @@ class ProductController extends Controller
         $data += [
             'types' => $types,
         ];
+
+        $data += [
+            'title' => $title,
+        ];
+        
+        // dd($title);
 
         return view("product.list", compact("data"));
     }

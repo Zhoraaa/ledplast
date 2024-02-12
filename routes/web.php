@@ -59,7 +59,6 @@ Route::post('/admin/undoMod/{id}', [AdminController::class, "undoMod"])->middlew
 Route::post('/admin/ban/{id}', [AdminController::class, "ban"])->middleware('auth')->name('ban');
 Route::post('/admin/unban/{id}', [AdminController::class, "unban"])->middleware('auth')->name('unban');
 
-Route::get('/ourWorks', [OurWorksController::class, "getAll"])->name('ourWorks'); // в карту
 Route::post('/ourWork/new', [OurWorksController::class, "editor"])->middleware('auth')->name('OWnew');
 Route::get('/ourWork/{id}', [OurWorksController::class, "checkWork"])->name('OWview');
 Route::post('/ourWork/{id}/edit', [OurWorksController::class, "editor"])->middleware('auth')->name('OWedit');

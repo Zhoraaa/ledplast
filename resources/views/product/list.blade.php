@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    Каталог
+    {{ $data['title'] }}
 @endsection
 
 @php
@@ -28,7 +28,12 @@
     <br>
 
     <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
-        <h1 class="lt-bold lt-up bindigo-text">Каталог товаров</h1>
+        <div>
+            <h1 class="lt-bold lt-up bindigo-text">Каталог товаров</h1>
+            <p class="lt-thin italic bgray-text this-catalogue" title="{{ $data['title'] }}">
+                {{ (mb_strlen($data['title']) > 45) ? mb_substr($data['title'], 0, 45) . '...' : $data['title'] }}
+            </p>
+        </div>
         @auth
             @if (auth()->user()->role < 2)
                 <form action="{{ @route('productNew') }}" method="post">
@@ -132,7 +137,9 @@
                 </div>
                 <div class="pcard-text">
                     <a href="{{ route('seeProduct', ['id' => $product->id]) }}">
-                        <h5 class="bindigo-text lt-bold">{{ $product->name }}</h5>
+                        <h5 class="bindigo-text lt-bold" title="{{$product->name}}">
+                            {{ (mb_strlen($product->name) > 40) ? mb_substr($product->name, 0, 40) . '...' : $product->name }}
+                        </h5>
                     </a>
                     <p>{{ $product->category }}</p>
                 </div>

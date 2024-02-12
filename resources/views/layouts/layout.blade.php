@@ -17,15 +17,15 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
     {{-- TineMCE --}}
-    <script src="https://cdn.tiny.cloud/1/2aarpxpfwjlqbd84vzbvv6tzgbcquwc0enavyueu9lmd5dqj/tinymce/6/tinymce.min.js"
+    <script src="https://cdn.tiny.cloud/1/uig2iyio5vvat8bnvd2319qa49zs1kp1ktl25x3q5u1l5og8/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: '.tinyMCE',
             language: 'ru',
             menubar: 'edit format insert view',
-            plugins: 'mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-            toolbar: 'undo redo | blocks fontsize | bold italic underline strikethrough removeformat  | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
         });
     </script>
     {{-- Local --}}
@@ -67,9 +67,6 @@
                         <a class="dropdown-item text-white hov-gray" href="#">Полезная информация</a>
                         <a class="dropdown-item text-white hov-gray" href="#">Госучреждениям</a>
                     </div>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ @route('ourWorks') }}">Наши работы</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ @route('about') }}">О нас</a>
@@ -167,7 +164,7 @@
                     <p>г. Уфа, ул. Красина, д. 21</p>
                     <p>+7 347 266 06 78</p>
                     <p>info@ledplast.ru</p>
-                    <p>ООО “Уральский светотехнический завод”, 20232</p>
+                    <p>ООО “Уральский светотехнический завод”, 2024</p>
                     <div class="ftr-soc-links lt-thin">
                         <a href=""><img src="{{ asset('imgs/vk.svg') }}" alt=""></a>
                         <a href=""><img src="{{ asset('imgs/tiktok.svg') }}" alt=""></a>

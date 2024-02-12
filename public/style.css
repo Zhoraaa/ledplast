@@ -353,6 +353,10 @@ footer {
 }
 
 /* Каталог */
+.this-catalogue {
+  
+}
+
 .pcards-wrapper {
   display: flex;
   flex-wrap: wrap;
