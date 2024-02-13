@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    Уральский светотехнический заавод
+    Уральский светотехнический завод
 @endsection
 
 @php

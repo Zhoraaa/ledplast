@@ -1,8 +1,14 @@
 @extends('layouts.layout')
 
 @section('title')
-    Редактирование поста
+    Редактор статей
 @endsection
+
+@php
+    $post = $data['post'];
+    $reply_to = $data['reply_to'];
+    $ptypes = $data['ptypes'];
+@endphp
 
 @section('body')
     <form action="{{ @route('savePost') }}" method="POST" class="border border-secondary rounded m-2 p-3 form-auth">
@@ -19,7 +25,11 @@
             </textarea>
         </div>
         <div class="form-block-wrapper border border-secondary rounded">
-            <select name="" id=""></select>
+            <select name="ptype" id="">
+                @foreach ($ptypes as $ptype)
+                    <option value="{{$ptype->id}}">{{$ptype->name}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-block-wrapper">
             <button type="submit" class="btn btn-primary">Опубликовать</button>

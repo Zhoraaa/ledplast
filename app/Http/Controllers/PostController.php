@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\PostType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,6 @@ class PostController extends Controller
                 'theme' => $postRaw->theme,
                 'text' => $postRaw->text,
                 'post_type_id' => $postType,
-                'author_id' => Auth::id(),
                 'reply_to' => (!empty($postRaw->reply_to)) ? $postRaw->reply_to : null,
             ]);
         } else {
@@ -43,9 +43,7 @@ class PostController extends Controller
     }
     public function allPosts()
     {
-        $posts = Post::join('users', 'posts.author_id', '=', 'users.id')
-            ->select('posts.*', 'users.login as author')
-            ->where('post_type_id', 1)
+        $posts = Post::where('post_type_id', 1)
             ->paginate(3);
         // dd($posts);
 
@@ -53,9 +51,7 @@ class PostController extends Controller
     }
     public function seePost($id)
     {
-        $post = Post::join('users', 'posts.author_id', '=', 'users.id')
-            ->select('posts.*', 'users.login as author')
-            ->where("posts.id", $id)
+        $post = Post::where("posts.id", $id)
             ->first();
 
         $theme = ['firstPost' => $post];
@@ -71,15 +67,11 @@ class PostController extends Controller
     }
     public function postEditor(Request $request)
     {
-        $post = Post::find($request->id);
+        $data['post'] = Post::find($request->id);
+        $data['reply_to'] = $request->idToReply;
+        $data['ptypes'] = PostType::get();
 
-        $reply_to = $request->idToReply;
-
-        if ($reply_to) {
-            return view("post.editor", compact('reply_to'));
-        }
-
-        return view("post.editor", compact('post'));
+        return view("post.editor", compact('data'));
     }
     public function postDelete(Request $request)
     {

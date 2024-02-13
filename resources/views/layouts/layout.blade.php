@@ -64,8 +64,8 @@
                     <div class="dropdown-menu active">
                         <a class="dropdown-item text-white hov-gray" href="{{ @route('delivery') }}">Доставка</a>
                         <a class="dropdown-item text-white hov-gray" href="#">Гарантия</a>
-                        <a class="dropdown-item text-white hov-gray" href="#">Полезная информация</a>
-                        <a class="dropdown-item text-white hov-gray" href="#">Госучреждениям</a>
+                        <a class="dropdown-item text-white hov-gray" href="{{ @route('viewPosts', ['ptype' => 'Госучреждениям']) }}">Госучреждениям</a>
+                        <a class="dropdown-item text-white hov-gray" href="{{ @route('viewPosts', ['ptype' => 'Полезная информация']) }}">Полезная информация</a>
                     </div>
                 </li>
                 <li class="nav-item active">
@@ -90,6 +90,10 @@
                             @if (auth()->user()->role === 1)
                                 <a class="dropdown-item text-white hov-gray"
                                     href="{{ @route('usrRedaction') }}">Администрирование</a>
+                            @endif
+                            @if (auth()->user()->role < 3)
+                                <a class="dropdown-item text-white hov-gray"
+                                    href="{{ @route('forum') }}">Статьи</a>
                             @endif
                             <a class="dropdown-item text-white hov-gray" href="{{ @route('cart') }}">Корзина</a>
                             <a class="dropdown-item text-white hov-gray" href="{{ @route('user') }}">Личный кабинет</a>

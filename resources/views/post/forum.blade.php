@@ -6,17 +6,17 @@
 
 @section('body')
     <div class="border border-secondary rounded m-2 p-3">
+        <div class="w80 centering pagination">
+            {{ $posts->links() }}
+        </div>
         @auth
-            @if (!auth()->user()->banned)
+            @if (auth()->user()->role < 3)
                 <form action="{{ @route('postNew') }}" method="post">
                     @csrf
                     <button class="btn btn-primary m-2">Новый пост</button>
                 </form>
             @endif
         @endauth
-        <div class="w80 centering pagination">
-            {{ $posts->links() }}
-        </div>
         @if (!empty($posts))
             @foreach ($posts as $post)
                 <hr>

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Letter;
 use App\Models\OurWorks;
+use App\Models\Post;
+use App\Models\PostType;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
@@ -37,5 +40,17 @@ class PageController extends Controller
             // Если файл не найден, возвращаем 404 Not Found
             abort(404);
         }
+    }
+
+    public function viewPosts($ptype) {
+        $ptype = PostType::select('id')->where('name', $ptype)->first()->id;
+
+        $data['title'] = $ptype;
+        $data['posts'] = Post::where('posts.post_type_id', $ptype)
+        ->paginate(5);
+
+        dd($data['posts']);
+
+        return view('forGovernment', compact('data'));
     }
 }

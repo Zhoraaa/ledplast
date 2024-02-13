@@ -73,3 +73,4 @@ Route::get('/delivery', function () { return view('delivery'); })->name('deliver
 Route::get('/about', function () { return view('about'); })->name('about'); // в карту
 Route::get('/contacts', function () { return view('contacts'); })->name('contacts'); // в карту
 Route::get('/file/{filePath}', [PageController::class, 'file'])->name('file');
+Route::get('/articles/{ptype}', [PageController::class, 'viewPosts'])->name('viewPosts'); // в карту
