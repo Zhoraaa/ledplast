@@ -10,7 +10,7 @@
     <br>
     <br>
 
-    <form action="{{ route('OWsave') }}" method="POST" enctype="multipart/form-data" class="w60">
+    <form action="{{ route('OWsave') }}" method="POST" enctype="multipart/form-data" class="widthing">
         @csrf
         <input type="number" name="work_id" value="{{ $data->id ?? null }}" class="hide">
         <div class="form-group">

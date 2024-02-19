@@ -10,6 +10,6 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        "theme", "text", "post_type_id", "reply_to"
+        "theme", "text", "post_type_id"
     ];
 }

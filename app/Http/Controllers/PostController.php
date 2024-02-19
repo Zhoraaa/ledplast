@@ -19,15 +19,11 @@ class PostController extends Controller
             "text" => "required",
         ]);
 
-        $postType = ($postRaw->reply_to) ? 2 : 1;
-        $postType = ($postRaw->post_type) ? $postRaw->post_type : $postType;
-
         if (!$postRaw->post_id) {
             $post_id = Post::insertGetId([
                 'theme' => $postRaw->theme,
                 'text' => $postRaw->text,
-                'post_type_id' => $postType,
-                'reply_to' => (!empty($postRaw->reply_to)) ? $postRaw->reply_to : null,
+                'post_type_id' => $postRaw->ptype,
             ]);
         } else {
             $post = Post::find($postRaw->post_id)
@@ -75,8 +71,10 @@ class PostController extends Controller
     }
     public function postDelete(Request $request)
     {
-        $post = DB::table("posts")->where('id', $request->id)->delete();
+        $post = Post::where('id', $request->id)->first();
+        $return_to = PostType::where('id', $post->post_type_id)->first()->name;
+        $post->delete();
 
-        return redirect()->route("forum");
+        return redirect()->route("viewPosts", ['ptype' => $return_to]);
     }
 }

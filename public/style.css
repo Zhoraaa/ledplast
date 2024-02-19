@@ -6,6 +6,10 @@ html {
   font-size: 2vh;
 }
 
+body {
+  min-height: 100vh;
+}
+
 @media (max-width: 800) {
   html {
     font-size: 1vh;
@@ -16,7 +20,7 @@ html {
 @import url('https://fonts.cdnfonts.com/css/montserrat');
 
 *,
-h1,
+h3,
 h2,
 h3,
 h3,
@@ -50,14 +54,20 @@ span {
 }
 
 /* Elems */
-.w80 {
-  width: 80%;
+.widthing {
+  width: 60%;
   margin: auto;
 }
 
-.w60 {
-  width: 60%;
-  margin: auto;
+@media (max-width: 800px) {
+  .widthing {
+    width: 80%;
+  }
+}
+@media (max-width: 200px) {
+  .widthing {
+    width: 80%;
+  }
 }
 
 .hov-gray {
@@ -353,9 +363,7 @@ footer {
 }
 
 /* Каталог */
-.this-catalogue {
-  
-}
+.this-catalogue {}
 
 .pcards-wrapper {
   display: flex;
@@ -529,4 +537,26 @@ footer {
 .letter-wrapper:hover .letter-hover {
   background-color: #4d4d4d60;
   transform: translateY(-110%);
+}
+
+/* Наши работы */
+.ow-state {
+  gap: 1vh;
+}
+
+.ow-cover {
+  height: 40vh;
+  width: 40%;
+  max-height: 400px;
+  min-width: 400px;
+  overflow: hidden;
+}
+
+.ow-cover>* {
+  width: 100%;
+  max-width: 90vw;
+}
+
+.ow-text {
+  width: 55%;
 }

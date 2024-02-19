@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru"
+    title="
+Компания «Ledplast» - Уральский завод светотехнических изделий, является производителем светодиодных уличных и промышленных светильников. «Ledplast» представляет революционную новинку на рынке светодиодных светильников: светильники «Ledplast» серии ST и PR, с запатентованной инновационной конструкцией.
+">
 
 <head>
     <meta charset="UTF-8">
@@ -64,8 +67,10 @@
                     <div class="dropdown-menu active">
                         <a class="dropdown-item text-white hov-gray" href="{{ @route('delivery') }}">Доставка</a>
                         <a class="dropdown-item text-white hov-gray" href="#">Гарантия</a>
-                        <a class="dropdown-item text-white hov-gray" href="{{ @route('viewPosts', ['ptype' => 'Госучреждениям']) }}">Госучреждениям</a>
-                        <a class="dropdown-item text-white hov-gray" href="{{ @route('viewPosts', ['ptype' => 'Полезная информация']) }}">Полезная информация</a>
+                        <a class="dropdown-item text-white hov-gray"
+                            href="{{ @route('viewPosts', ['ptype' => 'Госучреждениям']) }}">Госучреждениям</a>
+                        <a class="dropdown-item text-white hov-gray"
+                            href="{{ @route('viewPosts', ['ptype' => 'Полезная информация']) }}">Полезная информация</a>
                     </div>
                 </li>
                 <li class="nav-item active">
@@ -93,13 +98,14 @@
                             @endif
                             @if (auth()->user()->role < 3)
                                 <a class="dropdown-item text-white hov-gray"
-                                    href="{{ @route('forum') }}">Статьи</a>
+                                    href="{{ @route('viewPosts', ['ptype' => 'Черновик']) }}">Черновики</a>
                             @endif
                             <a class="dropdown-item text-white hov-gray" href="{{ @route('cart') }}">Корзина</a>
                             <a class="dropdown-item text-white hov-gray" href="{{ @route('user') }}">Личный кабинет</a>
                             <form action="{{ @route('logout') }}" method="POST">
                                 @csrf
-                                <button class="lt-thin bg-bindigo border-0 dropdown-item text-white hov-gray" href="#">Выход</button>
+                                <button class="lt-thin bg-bindigo border-0 dropdown-item text-white hov-gray"
+                                    href="#">Выход</button>
                             </form>
 
                     </li>
@@ -111,7 +117,7 @@
     @yield('body')
 
     <footer class="bg-bindigo lt-thin">
-        <div class="ftr-wrapper w80">
+        <div class="ftr-wrapper widthing">
             <div class="ftr-logo">
                 <img src="{{ asset('imgs/fullestlogo.svg') }}" alt="">
             </div>

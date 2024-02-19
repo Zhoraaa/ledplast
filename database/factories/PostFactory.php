@@ -16,7 +16,7 @@ class PostFactory extends Factory
         return [
             'theme' => $this->faker->sentence,
             'text' => $this->faker->paragraph,
-            'post_type_id' => $this->faker->randomElement([1, 2, 3, 4]),
+            'post_type_id' => $this->faker->randomElement([2, 3]),
             'reply_to' => function (array $attributes) {
                 return $attributes['post_type_id'] == 2 ? Post::factory() : null;
             },

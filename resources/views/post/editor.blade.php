@@ -16,11 +16,11 @@
         <input type="text" class="hide" name="post_id" value="{{ isset($post) ? $post->id : null }}">
         <input type="text" class="hide" name="reply_to" value="{{ isset($reply_to) ? $reply_to : null }}">
         <div class="form-block-wrapper border border-secondary rounded">
-            <input type="text" name="theme" class="theme-inp" placeholder="Тема поста..."
+            <input type="text" name="theme" class="theme-inp" placeholder="Тема статьи..."
                 value="{{ isset($post) ? $post->theme : null }}">
         </div>
         <div class="form-block-wrapper border border-secondary rounded">
-            <textarea name="text" class="tinyMCE" placeholder="Текст поста...">
+            <textarea name="text" class="tinyMCE" placeholder="Текст статьи...">
                 {{ isset($post) ? $post->text : null }}
             </textarea>
         </div>
@@ -32,7 +32,7 @@
             </select>
         </div>
         <div class="form-block-wrapper">
-            <button type="submit" class="btn btn-primary">Опубликовать</button>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
     </form>
 @endsection

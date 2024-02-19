@@ -64,7 +64,7 @@
             </select>
         </div>
         <div class="form-block-wrapper">
-            <button type="submit" class="btn btn-primary">Опубликовать</button>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
     </form>
 @endsection

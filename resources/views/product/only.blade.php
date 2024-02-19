@@ -46,7 +46,7 @@
     <br>
     <br>
 
-    <div class="w80">
+    <div class="widthing">
         <div class="d-flex flex-wrap about-product flex-wrap centering justify-content-around">
             @if ($link)
                 <div class="product-cover m-2 d-flex align-items-center justify-content-center">
@@ -54,7 +54,7 @@
                 </div>
             @endif
             <div class="product-text d-flex flex-wrap flex-column m-2">
-                <h1 class="lt-bold lt-up bindigo-text">{{ $product->name }}</h1>
+                <h3 class="lt-bold lt-up bindigo-text">{{ $product->name }}</h3>
 
                 @if ($product->description != null)
                     <span class="m-2">{!! $product->description !!}</span>
@@ -80,26 +80,26 @@
     <div class="text-info">
         <br>
         @if ($product->advantages != null)
-            <div class="w60">
-                <h1 class="lt-bold lt-up bindigo-text">Преимущества:</h1>
+            <div class="widthing">
+                <h3 class="lt-bold lt-up bindigo-text">Преимущества:</h3>
                 <span class="m-2 bgray-text">{!! $product->advantages !!}</span>
             </div>
         @endif
         @if ($product->usability != null)
-            <div class="w60">
-                <h1 class="lt-bold lt-up bindigo-text">Применение:</h1>
+            <div class="widthing">
+                <h3 class="lt-bold lt-up bindigo-text">Применение:</h3>
                 <span class="m-2 bgray-text">{!! $product->usability !!}</span>
             </div>
         @endif
         @if ($product->parameters != null)
-            <div class="w60">
-                <h1 class="lt-bold lt-up bindigo-text">Характеристики:</h1>
+            <div class="widthing">
+                <h3 class="lt-bold lt-up bindigo-text">Характеристики:</h3>
                 <span class="m-2 bgray-text">{!! $product->parameters !!}</span>
             </div>
         @endif
     </div>
     <br>
-    <div class="w60">
+    <div class="widthing">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

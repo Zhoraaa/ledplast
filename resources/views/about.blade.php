@@ -7,12 +7,12 @@
 @section('body')
     <div class="divider"></div>
 
-    <div class="w60">
+    <div class="widthing">
         <br>
         <br>
-        <h1 class="bindigo-text lt-bold lt-up">
+        <h3 class="bindigo-text lt-bold lt-up">
             О компании
-        </h1>
+        </h3>
         <br>
         <p class="bgray-text">
             Компания «Ledplast» - Уральский завод светотехнических изделий, является производителем светодиодных уличных и
@@ -41,40 +41,40 @@
 
     <br>
 
-    <div class="w60">
-        <h1 class="bindigo-text lt-bold lt-up">
+    <div class="widthing">
+        <h3 class="bindigo-text lt-bold lt-up">
             История компании
-        </h1>
+        </h3>
     </div>
 
     <br>
 
-    <div class="history-grid w60">
+    <div class="history-grid widthing">
         <div class="hgrid-elem">
             <div class="m-4 text-right">
-                <h1 class="bgray-text lt-bold lt-up ">
+                <h3 class="bgray-text lt-bold lt-up ">
                     2013
-                </h1>
+                </h3>
             </div>
             <div class="m-4 text-right">
-                <h1 class="bgray-text lt-bold lt-up ">
+                <h3 class="bgray-text lt-bold lt-up ">
                     2015
-                </h1>
+                </h3>
             </div>
             <div class="m-4 text-right">
-                <h1 class="bgray-text lt-bold lt-up row-x2">
+                <h3 class="bgray-text lt-bold lt-up row-x2">
                     2017
-                </h1>
+                </h3>
             </div>
             <div class="m-4 text-right">
-                <h1 class="bgray-text lt-bold lt-up row-x2">
+                <h3 class="bgray-text lt-bold lt-up row-x2">
                     2020
-                </h1>
+                </h3>
             </div>
             <div class="m-4 text-right">
-                <h1 class="bgray-text lt-bold lt-up ">
+                <h3 class="bgray-text lt-bold lt-up ">
                     Светлое<br>будущее
-                </h1>
+                </h3>
             </div>
         </div>
 
@@ -82,9 +82,9 @@
 
         <div class="hgrid-elem">
             <div class="m-4">
-                <h1 class="bgray-text lt-bold lt-up text-left">
+                <h3 class="bgray-text lt-bold lt-up text-left">
                     ЗАРОЖДЕНИЕ
-                </h1>
+                </h3>
                 <p>
                     Зарождение идеи производства светодиодных светильников. Многолетний опыт работы на рынке светотехники
                     позволил нам создать по-настоящему качественный продукт. Мы внимательно изучили ошибки многих
@@ -93,38 +93,38 @@
                 </p>
             </div>
             <div class="m-4">
-                <h1 class="bgray-text lt-bold lt-up text-left">
+                <h3 class="bgray-text lt-bold lt-up text-left">
                     АНАЛИЗ
-                </h1>
+                </h3>
                 <p>
                     Анализ, изучение направления, первые инженерные разработки и прототипы.
                 </p>
             </div>
             <div class="m-4">
-                <h1 class="bgray-text lt-bold lt-up text-left">
+                <h3 class="bgray-text lt-bold lt-up text-left">
                     ПРОИЗВОДСТВО
-                </h1>
+                </h3>
                 <p>
                     Производство промышленного светильника, тестирование, ввод в эксплуатацию.
                 </p>
-                <h1 class="bgray-text lt-bold lt-up text-left">
+                <h3 class="bgray-text lt-bold lt-up text-left">
                     ДКУ УРАЛ
-                </h1>
+                </h3>
                 <p>
                     Выпуск серии уличных светодиодных светильников ДКУ УРАЛ
                 </p>
             </div>
             <div class="m-4">
-                <h1 class="bgray-text lt-bold lt-up text-left">
+                <h3 class="bgray-text lt-bold lt-up text-left">
                     ПРИЗНАНИЕ
-                </h1>
+                </h3>
                 <p>
                     Регистрация ООО «Уральский светотехнический завод», сертификация, проведение независимых лабораторных
                     испытаний, помимо испытаний в собственной лаборатории.
                 </p>
-                <h1 class="bgray-text lt-bold lt-up text-left">
+                <h3 class="bgray-text lt-bold lt-up text-left">
                     РЫНКИ
-                </h1>
+                </h3>
                 <p>
                     Выход на открытый рынок светодиодной светотехнической продукции Российской Федерации, Казахстана,
                     Беларуси.

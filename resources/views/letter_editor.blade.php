@@ -8,7 +8,7 @@
     <div class="divider"></div>
     <br>
 
-    <form action="{{ route('letterSave') }}" method="post" enctype="multipart/form-data" class="w60">
+    <form action="{{ route('letterSave') }}" method="post" enctype="multipart/form-data" class="widthing">
         @csrf
         <div class="form-group">
             <label for="from">
@@ -25,7 +25,7 @@
             <input name="image" type="file" class="form-control-file" id="image" aria-describedby="emailHelp">
             <small class="form-text text-muted">Загрузите скан письма (.png, .jpeg, .jpg, .pdf).</small>
         </div>
-        <button class="btn btn-primary">Опубликовать</button>
+        <button class="btn btn-primary">Сохранить</button>
     </form>
 
     <br>

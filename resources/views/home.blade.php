@@ -40,9 +40,9 @@
     {{-- Микро каталог --}}
 
     <div class="mini-catalogue">
-        <h1 class="bblue-text text-center lt-up lt-bold">
+        <h3 class="bblue-text text-center lt-up lt-bold">
             Большой выбор товаров
-        </h1>
+        </h3>
         <div class="grid-ctlg">
             @foreach ($forGrid as $key => $item)
                 <a href="{{ route('shop', ['category' => $key]) }}">
@@ -64,14 +64,14 @@
 
     <br>
 
-    <div class="w80 d-flex">
+    <div class="widthing d-flex">
         <div class="guy no-matter">
             <img src="imgs/services.png" alt="">
         </div>
         <div class="d-flex flex-column">
-            <h1 class="bindigo-text lt-up lt-bold m-2">
+            <h3 class="bindigo-text lt-up lt-bold m-2">
                 Уcлуги
-            </h1>
+            </h3>
             <span class="bgray-text m-2">
                 Наша компания предоставляет широкий спектр услуг. Составление документации, проведение энергосервисных,
                 монтажных и геодезических работ. Ознакомиться с полным списком услуг вы можете на соответствующей
@@ -91,10 +91,10 @@
     <div class="divider"></div>
     <br>
 
-    <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
-        <h1 class="bindigo-text lt-bold lt-up">
+    <div class="widthing d-flex flex-wrap justify-content-between align-items-center">
+        <h3 class="bindigo-text lt-bold lt-up">
             Наши работы
-        </h1>
+        </h3>
 
         @auth
             @if (auth()->user()->role < 3)
@@ -107,16 +107,16 @@
     </div>
 
     @if (!$ourWorks->isEmpty())
-        <div class="d-flex flex-column align-items-center w80">
+        <div class="d-flex flex-column align-items-center widthing">
             @foreach ($ourWorks as $ourWork)
                 @php
                     $link = $ourWork->cover === 'default.png' ? 'imgs/default.png' : 'storage/imgs/our_works/covers/' . $ourWork->cover;
                 @endphp
-                <div class="d-flex flex-wrap justify-content-around align-items-center w-100 m-2">
-                    <div class="OWcover centering">
+                <div class="d-flex flex-wrap justify-content-center align-items-center w-100 m-2 ow-state">
+                    <div class="ow-cover centering">
                         <img src="{{ asset($link) }}" alt="">
                     </div>
-                    <div class="m-2 d-flex flex-wrap flex-column w60">
+                    <div class="m-2 d-flex flex-wrap flex-column ow-text">
                         <h3 class="bgray-text lt-bold lt-up">
                             {{ $ourWork->name }}
                         </h3>
@@ -125,7 +125,7 @@
                         </div>
                         <br>
                         <div class="bgray-text">
-                            {!! strlen($ourWork->description) < 200 ? $ourWork->description : substr($ourWork->description, 0, 150) . '...' !!}
+                            {!! mb_strlen($ourWork->description) < 200 ? $ourWork->description : mb_substr($ourWork->description, 0, 150) . '...' !!}
                         </div>
                         <br>
                         <a href="{{ route('OWview', ['id' => $ourWork->id]) }}"><button class="btn btn-primary">Подробнее
@@ -143,8 +143,8 @@
 
     <br>
 
-    <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
-        <h1 class="lt-bold lt-up bindigo-text">Благодарственные письма</h1>
+    <div class="widthing d-flex flex-wrap justify-content-between align-items-center">
+        <h3 class="lt-bold lt-up bindigo-text">Благодарственные письма</h3>
         @auth
             @if (auth()->user()->role < 3)
                     <form action="{{ @route('letterNew') }}" method="post">
@@ -155,7 +155,7 @@
         @endauth
     </div>
 
-    <div class="w80 d-flex justify-content-start flex-wrap letters-wrapper">
+    <div class="widthing d-flex justify-content-start flex-wrap letters-wrapper">
         @foreach ($letters as $letter)
             <div class="letter-wrapper">
                 <img src="{{ asset('storage/imgs/letter_scans/' . $letter->image) }}" alt="Письмо от {{ $letter->from }}" title="Письмо от {{ $letter->from }}"
@@ -175,15 +175,15 @@
     </div>
     <br>
 
-    <div class="divider"></div>
-    {{-- Вакансии --}}
+    {{-- <div class="divider"></div>
+    Вакансии
     <br>
 
-    <div class="w80 d-flex ">
+    <div class="widthing d-flex ">
         <div class="d-flex flex-column">
-            <h1 class="bindigo-text lt-up lt-bold m-2">
+            <h3 class="bindigo-text lt-up lt-bold m-2">
                 ВАКАНСИИ
-            </h1>
+            </h3>
             <span class="bgray-text m-2">
                 Корпоративная связь, софинансирование абонементов в фитнес – клуб (Leo Fit), система накопления
                 персональных дней (1 день в год), отсутствие обязательного dress-code, книжный клуб (библиотека),
@@ -191,9 +191,9 @@
                 (подбор сети клиник, оптимального корпоративного тарифа) по согласованию, софинансирование авиа- и
                 ж/д-билетов в отпуск по РФ по согласованию.
             </span>
-            <h1 class="bindigo-text lt-up lt-bold m-2">
+            <h3 class="bindigo-text lt-up lt-bold m-2">
                 СЕЙЧАС ИЩЕМ:
-            </h1>
+            </h3>
             <ul class="bgray-text lt-bold wewant m-2">
                 <li>Монатжника</li>
                 <li>Высотника</li>
@@ -205,5 +205,5 @@
         <div class="guy no-matter">
             <img src="imgs/vacancies.png" alt="">
         </div>
-    </div>
+    </div> --}}
 @endsection

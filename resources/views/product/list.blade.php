@@ -27,9 +27,9 @@
     <br>
     <br>
 
-    <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
+    <div class="widthing d-flex flex-wrap justify-content-between align-items-center">
         <div>
-            <h1 class="lt-bold lt-up bindigo-text">Каталог товаров</h1>
+            <h3 class="lt-bold lt-up bindigo-text">Каталог товаров</h3>
             <p class="lt-thin italic bgray-text this-catalogue" title="{{ $data['title'] }}">
                 {{ (mb_strlen($data['title']) > 45) ? mb_substr($data['title'], 0, 45) . '...' : $data['title'] }}
             </p>
@@ -111,8 +111,8 @@
     <br>
     <br>
 
-    <div class="w80 d-flex flex-wrap justify-content-between align-items-center">
-        <h1 class="lt-bold lt-up bindigo-text">Товары по вашему запросу</h1>
+    <div class="widthing d-flex flex-wrap justify-content-between align-items-center">
+        <h3 class="lt-bold lt-up bindigo-text">Товары по вашему запросу</h3>
 
         <span class="bgray-text m-2">Всего позиций: {{ $data['count'] }}</span>
 
@@ -121,11 +121,11 @@
 
     <br>
 
-    {{-- <div class="w80 centering pagination">
+    {{-- <div class="widthing centering pagination">
             {{ $products->links() }}
         </div> --}}
 
-    <div class="pcards-wrapper w80">
+    <div class="pcards-wrapper widthing" id="catalogue">
         @foreach ($products as $product)
             @php
                 $link = $product->ProductMedia()->count() === 0 ? 'imgs/default.png' : 'storage/imgs/products/' . $product->cover;
@@ -149,7 +149,7 @@
         @endforeach
     </div>
 
-    {{-- <div class="w80 centering pagination">
+    {{-- <div class="widthing centering pagination">
             {{ $products->links() }}
         </div> --}}
 
@@ -158,5 +158,5 @@
 
     <div class="divider"></div>
 
-    <div class="w80"></div>
+    <div class="widthing"></div>
 @endsection

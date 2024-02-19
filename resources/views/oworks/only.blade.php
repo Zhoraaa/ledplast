@@ -31,7 +31,7 @@
     <br>
     <br>
 
-    <div class="w60">
+    <div class="widthing">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
             <h2 class="bindigo-text lt-bold lt-up">
                 {{ $data->name }}
@@ -43,7 +43,7 @@
             <div class="">
                 {!! $data->description !!}
             </div>
-            <div class="OWcover">
+            <div class="ow-cover">
                 @php
                     $link = $data->cover === 'default.png' ? 'imgs/default.png' : 'storage/imgs/products/' . $data->cover;
                 @endphp
@@ -60,7 +60,7 @@
     <br>
     <br>
 
-    <div class="w60">
+    <div class="widthing">
         <h2 class="bindigo-text lt-bold lt-up">
             В рамках проекта было реализовано:
         </h2>

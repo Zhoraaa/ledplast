@@ -192,13 +192,13 @@
         background-image: url(https://cp.beget.com/img/icons/new_alert/support.svg)
     }
 
-    h1, h2 {
+    h3, h2 {
       font-family: 'PT Sans Caption', Arial, sans-serif;
       font-weight: normal;
       margin: 0;
     }
 
-    h1 {
+    h3 {
       font-size: 21px;
       line-height: 30px;
     }
@@ -896,7 +896,7 @@
                 }
             },
             {
-                "text": 'Поставьте галочки у пунктов "Файлы cookie и прочие данные сайтов" и "Кэшированные изображения и файлы", нажмите кнопку "Очистить историю посещений"',
+                "text": 'статьивьте галочки у пунктов "Файлы cookie и прочие данные сайтов" и "Кэшированные изображения и файлы", нажмите кнопку "Очистить историю посещений"',
                 "image": {
                     "normal": "https://cp.beget.com/shared/d336439cc49a04a1885186dc1930c02c/opera2.png",
                     "retina": "https://cp.beget.com/shared/6d6888aac8d3896da5cd201e8d31670b/opera22x.png"

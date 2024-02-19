@@ -10,10 +10,10 @@
     <br>
     <br>
 
-    <div class="w60">
-        <h1 class="bindigo-text lt-bold lt-up">
+    <div class="widthing">
+        <h3 class="bindigo-text lt-bold lt-up">
             Контакты
-        </h1>
+        </h3>
 
         <br>
 
@@ -30,7 +30,7 @@
     <br>
     <br>
 
-    <div class="w60 d-flex flex-wrap justify-content-around">
+    <div class="widthing d-flex flex-wrap justify-content-around">
         <div class="d-flex flex-wrap flex-column centering">
             <img src="./imgs/office-building_2086058.svg" alt="" class="contact-img">
             <p class="contact-text">г. Уфа, ул. Красина, д. 21</p>
@@ -57,7 +57,7 @@
     <br>
     <br>
 
-    <div class="w60 d-flex flex-wrap flex-wrap align-items-center justify-content-between">
+    <div class="widthing d-flex flex-wrap flex-wrap align-items-center justify-content-between">
         <div>
             <h3 class="bgray-text lt-bold lt-up">
                 Мы в соцсетях

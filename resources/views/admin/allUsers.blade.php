@@ -22,7 +22,7 @@
     @endif
 
     <div class="border border-secondary rounded m-2 p-3">
-        <div class="w80 centering pagination">
+        <div class="widthing centering pagination">
             {{ $users->links() }}
         </div>
         <table class="table">
@@ -78,7 +78,7 @@
                     </tr>
                 @endforeach
         </table>
-        <div class="w80 centering pagination">
+        <div class="widthing centering pagination">
             {{ $users->links() }}
         </div>
     </div>
