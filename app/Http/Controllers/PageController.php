@@ -16,7 +16,7 @@ class PageController extends Controller
     public function home()
     {
 
-        $data['oworks'] = OurWorks::get();
+        $data['oworks'] = OurWorks::paginate(4);
         $data['letters'] = Letter::get();
 
         // dd($data);

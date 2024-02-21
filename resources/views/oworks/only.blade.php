@@ -35,7 +35,7 @@
         <div class="d-flex flex-wrap justify-content-between align-items-center">
             <h2 class="bindigo-text lt-bold lt-up">
                 {{ $data->name }}
-            </h2>
+            </h3>
             <div class="bgray-text lt-thin lt-up no-matter">ПРОЕКТ {{ $data->year }}</div>
         </div>
         <br>
@@ -63,7 +63,7 @@
     <div class="widthing">
         <h2 class="bindigo-text lt-bold lt-up">
             В рамках проекта было реализовано:
-        </h2>
+        </h3>
         <br>
         <div class="">
             {!! $data->what_we_do !!}

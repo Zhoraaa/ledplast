@@ -31,7 +31,7 @@
         <div>
             <h3 class="lt-bold lt-up bindigo-text">Каталог товаров</h3>
             <p class="lt-thin italic bgray-text this-catalogue" title="{{ $data['title'] }}">
-                {{ (mb_strlen($data['title']) > 45) ? mb_substr($data['title'], 0, 45) . '...' : $data['title'] }}
+                {{ mb_strlen($data['title']) > 45 ? mb_substr($data['title'], 0, 45) . '...' : $data['title'] }}
             </p>
         </div>
         @auth
@@ -137,14 +137,14 @@
                 </div>
                 <div class="pcard-text">
                     <a href="{{ route('seeProduct', ['id' => $product->id]) }}">
-                        <h5 class="bindigo-text lt-bold" title="{{$product->name}}">
-                            {{ (mb_strlen($product->name) > 40) ? mb_substr($product->name, 0, 40) . '...' : $product->name }}
+                        <h5 class="bindigo-text lt-bold" title="{{ $product->name }}">
+                            {{ mb_strlen($product->name) > 40 ? mb_substr($product->name, 0, 40) . '...' : $product->name }}
                         </h5>
                     </a>
                     <p>{{ $product->category }}</p>
+                    <a href="{{ route('seeProduct', ['id' => $product->id]) }}"
+                        class="btn btn-primary rounded centering-m">Подробнее</a>
                 </div>
-                <a href="{{ route('seeProduct', ['id' => $product->id]) }}"
-                    class="btn btn-primary rounded centering-m">Подробнее</a>
             </div>
         @endforeach
     </div>

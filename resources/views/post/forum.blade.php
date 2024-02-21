@@ -30,9 +30,9 @@
                 <hr>
                 <div class="rounded p-4">
                     <a href="{{ route('seePost', ['id' => $post->id]) }}">
-                        <h2>
+                        <h3>
                             {{ $post->theme }}
-                        </h2>
+                        </h3>
                     </a>
                     <p>{!! mb_strlen($post->text) < 400 ? $post->text : mb_substr($post->text, 0, 200) . '...' !!}</p>
                     <a href="{{ route('seePost', ['id' => $post->id]) }}"><button class="btn btn-primary">Подробнее

@@ -21,6 +21,11 @@
 @endphp
 
 @section('body')
+    <p class="hide">
+        Компания «Ledplast» - Уральский завод светотехнических изделий, является производителем светодиодных уличных и
+        промышленных светильников. «Ledplast» представляет революционную новинку на рынке светодиодных светильников:
+        светильники «Ledplast» серии ST и PR, с запатентованной инновационной конструкцией.
+    </p>
     <div class="cover-wrapper">
         <div class="d-flex flex-column centering">
             <img src="{{ asset('imgs/sitecover.jpg') }}" alt="" class="cover">
@@ -98,41 +103,43 @@
 
         @auth
             @if (auth()->user()->role < 3)
-                    <form action="{{ @route('OWnew') }}" method="post">
-                        @csrf
-                        <button class="btn btn-primary m-2">Добавить проект</button>
-                    </form>
+                <form action="{{ @route('OWnew') }}" method="post">
+                    @csrf
+                    <button class="btn btn-primary m-2">Добавить проект</button>
+                </form>
             @endif
         @endauth
     </div>
 
     @if (!$ourWorks->isEmpty())
-        <div class="d-flex flex-column align-items-center widthing">
+        <div class="widthing d-flex flex-wrap justify-content-between g1">
             @foreach ($ourWorks as $ourWork)
                 @php
                     $link = $ourWork->cover === 'default.png' ? 'imgs/default.png' : 'storage/imgs/our_works/covers/' . $ourWork->cover;
                 @endphp
-                <div class="d-flex flex-wrap justify-content-center align-items-center w-100 m-2 ow-state">
+                <div
+                    class="d-flex flex-wrap flex-direction-column justify-content-center align-items-start ow-state g1">
                     <div class="ow-cover centering">
                         <img src="{{ asset($link) }}" alt="">
                     </div>
-                    <div class="m-2 d-flex flex-wrap flex-column ow-text">
-                        <h3 class="bgray-text lt-bold lt-up">
+                    <div class="d-flex flex-wrap flex-column ow-text">
+                        <h4 class="bgray-text lt-bold lt-up">
                             {{ $ourWork->name }}
-                        </h3>
+                        </h4>
                         <div class="bgray-text lt-thin">
                             {{ $ourWork->year }}
                         </div>
                         <br>
                         <div class="bgray-text">
-                            {!! mb_strlen($ourWork->description) < 200 ? $ourWork->description : mb_substr($ourWork->description, 0, 150) . '...' !!}
+                            {!! mb_strlen($ourWork->description) < 200
+                                ? $ourWork->description
+                                : mb_substr($ourWork->description, 0, 150) . '...' !!}
                         </div>
                         <br>
                         <a href="{{ route('OWview', ['id' => $ourWork->id]) }}"><button class="btn btn-primary">Подробнее
                                 →</button></a>
                     </div>
                 </div>
-                <br>
             @endforeach
         </div>
     @endif
@@ -147,19 +154,19 @@
         <h3 class="lt-bold lt-up bindigo-text">Благодарственные письма</h3>
         @auth
             @if (auth()->user()->role < 3)
-                    <form action="{{ @route('letterNew') }}" method="post">
-                        @csrf
-                        <button class="btn btn-primary m-2">Добавить письмо</button>
-                    </form>
+                <form action="{{ @route('letterNew') }}" method="post">
+                    @csrf
+                    <button class="btn btn-primary m-2">Добавить письмо</button>
+                </form>
             @endif
         @endauth
     </div>
 
-    <div class="widthing d-flex justify-content-start flex-wrap letters-wrapper">
+    <div class="widthing d-flex justify-content- flex-wrap letters-wrapper">
         @foreach ($letters as $letter)
             <div class="letter-wrapper">
-                <img src="{{ asset('storage/imgs/letter_scans/' . $letter->image) }}" alt="Письмо от {{ $letter->from }}" title="Письмо от {{ $letter->from }}"
-                    class="letter">
+                <img src="{{ asset('storage/imgs/letter_scans/' . $letter->image) }}" alt="Письмо от {{ $letter->from }}"
+                    title="Письмо от {{ $letter->from }}" class="letter">
                 @auth
                     @if (auth()->user()->role < 3)
                         <div class="letter-hover d-flex flex-column centering">

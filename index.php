@@ -495,7 +495,7 @@
   <hr>
   <div class="bottom-mobile">
     <footer>
-      <h2>Тех. поддержка</h2>
+      <h3>Тех. поддержка</h3>
       <p>
         <txt>Почта:</txt>
         <span><noindex><a href="mailto:support@beget.com" rel="nofollow">support@beget.com</a></noindex></span></p>
@@ -650,7 +650,7 @@
 </script>
 <script type="text/template" id="cacheTemplateRu">
   <div class="hint">
-    <h2>Проблема уже решена? Попробуйте сбросить кэш</h2>
+    <h3>Проблема уже решена? Попробуйте сбросить кэш</h3>
     <ul class="fa-ul">
       <li><span class="fa-li"><i class="fas fa-angle-right"></i></span><a class="clear-cache"
                                                                           onclick="clearCache(event)" href="#">Очистите
@@ -676,7 +676,7 @@
 </script>
 <script type="text/template" id="cacheTemplateEn">
   <div class="hint">
-    <h2>Is the problem solved? Try to reset the cache</h2>
+    <h3>Is the problem solved? Try to reset the cache</h3>
     <ul class="fa-ul">
       <li><span class="fa-li"><i class="fas fa-angle-right"></i></span><a class="clear-cache"
                                                                           onclick="clearCache(event)" href="#">Clear the
@@ -748,13 +748,13 @@
 </script>
 <script type="text/template" id="bottomMobileEn">
   <footer>
-    <h2>Support</h2>
+    <h3>Support</h3>
       <p><txt>Mail: </txt><span><noindex><a href="mailto:support@beget.com" rel="nofollow">support@beget.com</a></noindex></span></p>
   </footer>
 </script>
 <script type="text/template" id="bottomMobileRu">
   <footer>
-    <h2>Тех. поддержка</h2>
+    <h3>Тех. поддержка</h3>
     <p><txt>Почта: </txt><span><noindex><a href="mailto:support@beget.com" rel="nofollow">support@beget.com</a></noindex></span></p>
     <p><txt>Россия:</txt> <span>+7 (800) 700-06-08</span></p>
     <p><txt>Украина:</txt> <span>+380 (800) 802-192</span></p>
